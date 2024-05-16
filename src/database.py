@@ -73,7 +73,7 @@ class Database:
             cursor.execute("""CREATE TABLE IF NOT EXISTS solucoes (
             id SERIAL PRIMARY KEY,
             topico_id INTEGER NOT NULL,
-            titulo TEXT NOT NULL,
+            titulo TEXT NOT NULL UNIQUE,
             solucao_desc TEXT NULL,
             created_at TIMESTAMP NOT NULL,
             modified_at TIMESTAMP NULL,
@@ -85,11 +85,13 @@ class Database:
     def set_topic(topic: str, topic_des: str = None) -> bool:
         with DatabaseConnection() as cursor:
             cursor.execute("SELECT * FROM topicos WHERE topic = %s", (topic,))
+            time_now = datetime.now()
             existing_topic = cursor.fetchone()
             if existing_topic is not None:
                 logger.error(f'Topic {topic} already exists')
                 return False
-            cursor.execute("INSERT INTO topicos (topic, descricao) VALUES (%s, %s)", (topic, topic_des))
+            cursor.execute("INSERT INTO topicos (topic, descricao, created_at) VALUES (%s, %s, %s)",
+                           (topic, topic_des, time_now))
             return True
 
     @staticmethod
@@ -119,8 +121,9 @@ class Database:
                 # Get the time for the timestamps datas
                 time_now = datetime.now()
 
-                cursor.execute("INSERT INTO solucoes(topico_id, titulo, solucao_desc, created_at, modified_at, image_url) "
-                               "VALUES (%s, %s, %s, %s, %s, %s)", (topic_id, title, solution_desc, time_now, time_now, image_urls))
+                cursor.execute("INSERT INTO solucoes(topico_id, titulo, solucao_desc, created_at, modified_at, "
+                               "image_url) VALUES (%s, %s, %s, %s, %s, %s)",
+                               (topic_id, title, solution_desc, time_now, time_now, image_urls))
                 logger.info(f'Successfully add the solution {title} into topic ID {topic_id}.')
                 return True
             except Exception as e:
@@ -161,6 +164,7 @@ def has_the_comma(url_string):
         if character == ',':
             return True
     return False
+
 
 def replace_the_comma(url_string):
     has_comma = has_the_comma(url_string)

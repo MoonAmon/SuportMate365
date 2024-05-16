@@ -1,9 +1,6 @@
 import traceback
 from discord import Interaction
 from typing import Any
-
-from discord._types import ClientT
-
 from log.log import logger
 import discord
 

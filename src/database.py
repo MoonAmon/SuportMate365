@@ -157,6 +157,10 @@ class Database:
     def edit_solution():
         pass
 
+    @staticmethod
+    def delete_solution():
+        pass
+
 
 def has_the_comma(url_string):
     # Find the ',' in a url_string

@@ -791,3 +791,221 @@
 2024-05-15 21:33:47,171 - log.log - INFO - Database connection pool initialized (Database: suportmate)
 2024-05-15 21:33:47,172 - log.log - WARNING - Bot is initializing.
 2024-05-15 21:33:48,049 - log.log - WARNING - Bot setup completed.
+2024-05-15 22:00:28,684 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:00:28,684 - log.log - INFO - Database connection opened.
+2024-05-15 22:00:28,687 - log.log - INFO - Topics table created
+2024-05-15 22:00:28,687 - log.log - INFO - Solutions table created
+2024-05-15 22:00:28,687 - log.log - INFO - Transaction committed
+2024-05-15 22:00:28,687 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:00:28,687 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:02:54,820 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:02:54,820 - log.log - INFO - Database connection opened.
+2024-05-15 22:02:54,822 - log.log - INFO - Topics table created
+2024-05-15 22:02:54,822 - log.log - INFO - Solutions table created
+2024-05-15 22:02:54,823 - log.log - INFO - Transaction committed
+2024-05-15 22:02:54,823 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:02:54,823 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:10:36,144 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:10:36,145 - log.log - INFO - Database connection opened.
+2024-05-15 22:10:36,148 - log.log - INFO - Topics table created
+2024-05-15 22:10:36,148 - log.log - INFO - Solutions table created
+2024-05-15 22:10:36,148 - log.log - INFO - Transaction committed
+2024-05-15 22:10:36,148 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:10:36,148 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:11:12,712 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:11:12,712 - log.log - INFO - Database connection opened.
+2024-05-15 22:11:12,714 - log.log - INFO - Topics table created
+2024-05-15 22:11:12,714 - log.log - INFO - Solutions table created
+2024-05-15 22:11:12,714 - log.log - INFO - Transaction committed
+2024-05-15 22:11:12,714 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:11:12,714 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:12:37,657 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:12:37,657 - log.log - INFO - Database connection opened.
+2024-05-15 22:12:37,658 - log.log - INFO - Topics table created
+2024-05-15 22:12:37,658 - log.log - INFO - Solutions table created
+2024-05-15 22:12:37,658 - log.log - INFO - Transaction committed
+2024-05-15 22:12:37,658 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:12:37,658 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:13:37,384 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:13:37,384 - log.log - INFO - Database connection opened.
+2024-05-15 22:13:37,386 - log.log - INFO - Topics table created
+2024-05-15 22:13:37,386 - log.log - INFO - Solutions table created
+2024-05-15 22:13:37,386 - log.log - INFO - Transaction committed
+2024-05-15 22:13:37,386 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:13:37,387 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:16:48,900 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:16:48,900 - log.log - INFO - Database connection opened.
+2024-05-15 22:16:48,902 - log.log - INFO - Topics table created
+2024-05-15 22:16:48,902 - log.log - INFO - Solutions table created
+2024-05-15 22:16:48,902 - log.log - INFO - Transaction committed
+2024-05-15 22:16:48,902 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:16:48,902 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:18:17,514 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:18:17,514 - log.log - INFO - Database connection opened.
+2024-05-15 22:18:17,516 - log.log - INFO - Topics table created
+2024-05-15 22:18:17,516 - log.log - INFO - Solutions table created
+2024-05-15 22:18:17,516 - log.log - INFO - Transaction committed
+2024-05-15 22:18:17,516 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:18:17,516 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:23:52,239 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:23:52,239 - log.log - INFO - Database connection opened.
+2024-05-15 22:23:52,241 - log.log - INFO - Topics table created
+2024-05-15 22:23:52,242 - log.log - INFO - Solutions table created
+2024-05-15 22:23:52,242 - log.log - INFO - Transaction committed
+2024-05-15 22:23:52,242 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:23:52,242 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:24:21,336 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:24:21,336 - log.log - INFO - Database connection opened.
+2024-05-15 22:24:21,338 - log.log - INFO - Topics table created
+2024-05-15 22:24:21,338 - log.log - INFO - Solutions table created
+2024-05-15 22:24:21,338 - log.log - INFO - Transaction committed
+2024-05-15 22:24:21,339 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:24:21,339 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:24:21,340 - log.log - WARNING - Bot is initializing.
+2024-05-15 22:24:22,541 - log.log - WARNING - Bot setup completed.
+2024-05-15 22:24:50,812 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:24:50,813 - log.log - INFO - Database connection opened.
+2024-05-15 22:24:50,818 - log.log - INFO - Successfully get all the topics names
+2024-05-15 22:24:50,819 - log.log - INFO - Transaction committed
+2024-05-15 22:24:50,819 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:25:58,199 - log.log - INFO - Command list sent to Thiago Amancio DM
+2024-05-15 22:28:16,157 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:28:16,157 - log.log - INFO - Database connection opened.
+2024-05-15 22:28:16,158 - log.log - INFO - Topics table created
+2024-05-15 22:28:16,158 - log.log - INFO - Solutions table created
+2024-05-15 22:28:16,158 - log.log - INFO - Transaction committed
+2024-05-15 22:28:16,158 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:28:16,159 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:28:16,159 - log.log - WARNING - Bot is initializing.
+2024-05-15 22:28:17,256 - log.log - WARNING - Bot setup completed.
+2024-05-15 22:28:48,854 - log.log - INFO - Warning of update created. Cliente: Teste, Version: 3.5.6.9
+2024-05-15 22:32:53,348 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:32:53,349 - log.log - INFO - Database connection opened.
+2024-05-15 22:32:53,351 - log.log - INFO - Successfully get all the topics names
+2024-05-15 22:32:53,352 - log.log - INFO - Transaction committed
+2024-05-15 22:32:53,352 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:33:28,959 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:33:28,959 - log.log - INFO - Database connection opened.
+2024-05-15 22:33:28,960 - log.log - INFO - Successfully get all the topics names
+2024-05-15 22:33:28,960 - log.log - INFO - Transaction committed
+2024-05-15 22:33:28,960 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:33:32,225 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:33:32,225 - log.log - INFO - Database connection opened.
+2024-05-15 22:33:32,228 - log.log - INFO - Search for solution with the "Re" term(s)
+2024-05-15 22:33:32,228 - log.log - INFO - Transaction committed
+2024-05-15 22:33:32,228 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:37:19,198 - log.log - INFO - Command list sent to Thiago Amancio DM
+2024-05-15 22:38:10,625 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:38:10,626 - log.log - INFO - Database connection opened.
+2024-05-15 22:38:10,626 - log.log - INFO - Successfully get all the topics names
+2024-05-15 22:38:10,626 - log.log - INFO - Transaction committed
+2024-05-15 22:38:10,626 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:38:14,221 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:38:14,221 - log.log - INFO - Database connection opened.
+2024-05-15 22:38:14,221 - log.log - INFO - Search for solution with the "Re" term(s)
+2024-05-15 22:38:14,222 - log.log - INFO - Transaction committed
+2024-05-15 22:38:14,222 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:39:27,826 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:39:27,827 - log.log - INFO - Database connection opened.
+2024-05-15 22:39:27,827 - log.log - INFO - Successfully get all the topics names
+2024-05-15 22:39:27,828 - log.log - INFO - Transaction committed
+2024-05-15 22:39:27,828 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:42:16,131 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:42:16,131 - log.log - INFO - Database connection opened.
+2024-05-15 22:42:16,134 - log.log - INFO - Topics table created
+2024-05-15 22:42:16,134 - log.log - INFO - Solutions table created
+2024-05-15 22:42:16,134 - log.log - INFO - Transaction committed
+2024-05-15 22:42:16,134 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:42:16,134 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:42:16,135 - log.log - WARNING - Bot is initializing.
+2024-05-15 22:42:17,429 - log.log - WARNING - Bot setup completed.
+2024-05-15 22:43:33,533 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:43:33,533 - log.log - INFO - Database connection opened.
+2024-05-15 22:43:33,535 - log.log - INFO - Topics table created
+2024-05-15 22:43:33,536 - log.log - INFO - Solutions table created
+2024-05-15 22:43:33,536 - log.log - INFO - Transaction committed
+2024-05-15 22:43:33,536 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:43:33,536 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:43:33,537 - log.log - WARNING - Bot is initializing.
+2024-05-15 22:43:34,700 - log.log - WARNING - Bot setup completed.
+2024-05-15 22:54:02,874 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:54:02,874 - log.log - INFO - Database connection opened.
+2024-05-15 22:54:02,878 - log.log - INFO - Successfully get all the topics names
+2024-05-15 22:54:02,881 - log.log - INFO - Transaction committed
+2024-05-15 22:54:02,881 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:54:15,970 - log.log - INFO - Warning of update created. Cliente: Joazin, Version: 3.5.6.8
+2024-05-15 22:54:37,377 - log.log - INFO - Warning of update created. Cliente: Joazin, Version: 3.5.6.9
+2024-05-15 22:59:34,637 - log.log - INFO - Getting a connection from the pool
+2024-05-15 22:59:34,637 - log.log - INFO - Database connection opened.
+2024-05-15 22:59:34,640 - log.log - INFO - Topics table created
+2024-05-15 22:59:34,640 - log.log - INFO - Solutions table created
+2024-05-15 22:59:34,640 - log.log - INFO - Transaction committed
+2024-05-15 22:59:34,640 - log.log - INFO - Returning a connection to the pool
+2024-05-15 22:59:34,640 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 22:59:34,641 - log.log - WARNING - Bot is initializing.
+2024-05-15 22:59:35,571 - log.log - WARNING - Bot setup completed.
+2024-05-15 23:00:21,651 - log.log - INFO - Warning of update created. Cliente: Joazin Test, Version: 3.5.6.9
+2024-05-15 23:01:54,862 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:01:54,864 - log.log - INFO - Database connection opened.
+2024-05-15 23:01:54,865 - log.log - INFO - Topics table created
+2024-05-15 23:01:54,865 - log.log - INFO - Solutions table created
+2024-05-15 23:01:54,866 - log.log - INFO - Transaction committed
+2024-05-15 23:01:54,866 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:01:54,866 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 23:01:54,867 - log.log - WARNING - Bot is initializing.
+2024-05-15 23:01:55,730 - log.log - WARNING - Bot setup completed.
+2024-05-15 23:02:08,072 - log.log - INFO - Warning of update created. Cliente: Test2, Version: 3.5.6.9
+2024-05-15 23:05:31,080 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:05:31,080 - log.log - INFO - Database connection opened.
+2024-05-15 23:05:31,082 - log.log - INFO - Topics table created
+2024-05-15 23:05:31,082 - log.log - INFO - Solutions table created
+2024-05-15 23:05:31,082 - log.log - INFO - Transaction committed
+2024-05-15 23:05:31,082 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:05:31,082 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 23:05:31,084 - log.log - WARNING - Bot is initializing.
+2024-05-15 23:05:32,009 - log.log - WARNING - Bot setup completed.
+2024-05-15 23:05:56,764 - log.log - INFO - Warning of update created. Cliente: Fiesta, Version: 3.5.6.8
+2024-05-15 23:14:04,382 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:14:04,383 - log.log - INFO - Database connection opened.
+2024-05-15 23:14:04,384 - log.log - INFO - Topics table created
+2024-05-15 23:14:04,385 - log.log - INFO - Solutions table created
+2024-05-15 23:14:04,385 - log.log - INFO - Transaction committed
+2024-05-15 23:14:04,385 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:14:04,385 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 23:14:04,386 - log.log - WARNING - Bot is initializing.
+2024-05-15 23:14:05,337 - log.log - WARNING - Bot setup completed.
+2024-05-15 23:14:25,420 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:14:25,420 - log.log - INFO - Database connection opened.
+2024-05-15 23:14:25,423 - log.log - INFO - Transaction committed
+2024-05-15 23:14:25,423 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:14:50,235 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:14:50,236 - log.log - INFO - Database connection opened.
+2024-05-15 23:14:50,236 - log.log - INFO - Successfully get all the topics names
+2024-05-15 23:14:50,236 - log.log - INFO - Transaction committed
+2024-05-15 23:14:50,236 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:14:50,552 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:14:50,552 - log.log - INFO - Database connection opened.
+2024-05-15 23:14:50,554 - log.log - INFO - Topic with ID None successfully updated to ## :pushpin:Tópicos disponíveis:
+- **Impressora**
+- **Rejeições NFS**
+- **Rejeições NFC**
+2024-05-15 23:14:50,555 - log.log - INFO - Transaction committed
+2024-05-15 23:14:50,555 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:16:00,826 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:16:00,826 - log.log - INFO - Database connection opened.
+2024-05-15 23:16:00,828 - log.log - INFO - Topics table created
+2024-05-15 23:16:00,828 - log.log - INFO - Solutions table created
+2024-05-15 23:16:00,828 - log.log - INFO - Transaction committed
+2024-05-15 23:16:00,829 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:16:00,829 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-15 23:16:00,829 - log.log - WARNING - Bot is initializing.
+2024-05-15 23:16:01,825 - log.log - WARNING - Bot setup completed.
+2024-05-15 23:16:07,591 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:16:07,591 - log.log - INFO - Database connection opened.
+2024-05-15 23:16:07,594 - log.log - INFO - Transaction committed
+2024-05-15 23:16:07,594 - log.log - INFO - Returning a connection to the pool
+2024-05-15 23:16:20,126 - log.log - INFO - Getting a connection from the pool
+2024-05-15 23:16:20,126 - log.log - INFO - Database connection opened.
+2024-05-15 23:16:20,131 - log.log - INFO - Topic with ID 4 successfully updated to Rejeições NFS
+2024-05-15 23:16:20,132 - log.log - INFO - Transaction committed
+2024-05-15 23:16:20,132 - log.log - INFO - Returning a connection to the pool

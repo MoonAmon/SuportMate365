@@ -142,7 +142,7 @@ class Database:
                 return None
 
     @staticmethod
-    def search_solution(topic_id: int, search_term: str):
+    def search_solution_by_title(topic_id: int, search_term: str):
         with DatabaseConnection() as cursor:
             try:
                 cursor.execute('SELECT * FROM solucoes WHERE topico_id = %s AND titulo LIKE %s LIMIT 3',
@@ -151,6 +151,28 @@ class Database:
                 return cursor.fetchall()
             except Exception as e:
                 logger.error(f'Failed to search solution with "{search_term}" term(s) and {topic_id} topic ID. Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_all_solutions_by_topic_id(topic_id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM solucoes WHERE topico_id = %s', (topic_id,))
+                logger.info(f'Getting all the solution with "{topic_id}" topic ID')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get the solutions with {topic_id} topic ID. Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_solution_by_id(id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM solucoes WHERE id = %s', (id,))
+                logger.info(f'Getting all the solution with "{id}" topic ID')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get the solutions with {id} topic ID. Erro: {e}')
                 return None
 
     @staticmethod

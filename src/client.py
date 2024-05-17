@@ -64,10 +64,10 @@ async def version_view(interaction: discord.Interaction, cliente_nome: str):
     await bot.wait_for('interaction')
 
     version = view.value
-    channel_id = 1239668293334208673
+    channel_id = 897839632820109397
     channel = bot.get_channel(channel_id)
     message = (f':warning:ATENÇÃO:warning:\n\n:beginner:{cliente_nome}\n\n:white_check_mark:ATUALIZAÇÃO\n\n'
-               f'SISTEMA 365 - Versão {version}\n\n-----------------------------')
+               f':blue_circle:SISTEMA 365 - Versão {version}\n\n-----------------------------')
 
     logger.info(f'Warning of update created. Cliente: {cliente_nome}, Version: {version}')
     await channel.send(content=message)
@@ -165,15 +165,15 @@ async def add_solution(interaction: discord.Interaction, title: str, description
         await interaction.followup.send(f':prohibited: Erro: Falha ao salvar solução **{title}**!', ephemeral=True)
 
 
-@bot.tree.command(description='Procura solução na base de dados')
-async def search_solution(interaction: discord.Interaction, title_search_term: str):
+@bot.tree.command(name='procurar_solucao',description='Procura solução na base de dados')
+async def search_solution(interaction: discord.Interaction):
 
     # Get the topics names from database
     topics = Database.get_all_topics()
 
     # Set the view for topic select
     view = TopicSelectView(topics=topics)
-    await interaction.response.send_message('## Selecione um tópico para procura:', view=view)
+    await interaction.response.send_message('## Selecione um tópico para procura:', view=view, ephemeral=True)
 
     # Wait the user interaction
     await bot.wait_for('interaction')
@@ -185,22 +185,37 @@ async def search_solution(interaction: discord.Interaction, title_search_term: s
     await followup_message.delete(delay=10)
 
     # Search the solutions
-    solutions = Database.search_solution(topic_id, title_search_term)
+    solutions = Database.get_all_solutions_by_topic_id(topic_id)
 
     if solutions:
-        # Show the solutions
-        for solution in solutions:
-            # Get the url links
-            url_links = solution[-1].split(';')
+        view_solution = SolutionViewSelect(solutions=solutions)
+        await interaction.followup.send('## Selecione a solução que deseja visualizar:', view=view_solution, ephemeral=True)
 
-            await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
-                                            f'### Descrição\n '
-                                            f'{solution[3]}\n'
-                                            f'### Imagem(ns)\n'
-                                            f"{' '.join([f'![Image]({url})' for url in url_links])}\n"
-                                            f"----")
+        # Wait the user interaction
+        await bot.wait_for('interaction')
+
+        id_selected = view_solution.value
+        solution_selected = Database.get_solution_by_id(id_selected)
+
+        followup_message = await interaction.original_response()
+        await followup_message.delete(delay=10)
+
+        if solution_selected:
+            # Show the solutions
+            for solution in solution_selected:
+                # Get the url links
+                url_links = solution[-1].split(';')
+
+                await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
+                                                f'### Descrição\n '
+                                                f'{solution[3]}\n'
+                                                f'### Imagem(ns)\n'
+                                                f"{' '.join([f'![Image]({url})' for url in url_links])}\n"
+                                                f"----")
+        else:
+            await interaction.followup.send(f':prohibited: Nenhuma solução encontrada com os termos pesquisado!', ephemeral=True)
     else:
-        await interaction.followup.send(f':prohibited: Nenhuma solução encontrada com os termos pesquisado!')
+        await interaction.followup.send(f':prohibited: Nenhuma solução encontrada no tópico selecionado!', ephemeral=True)
 
 
 @bot.tree.command( name='help', description='Mostra todos os comandos disponíveis')
@@ -224,5 +239,9 @@ async def show_commands(interaction: discord.Interaction):
 
     # Send the confirmation
     await interaction.response.send_message(":white_check_mark: Enviei a lista de comandos para sua DM!", ephemeral=True)
+
+# @bot.tree.command(name='apagar_solucao', description='Apaga uma solução do tópico selecionado')
+# async def delete_solution(interaction: discord.Interaction):
+
 
 bot.run(TOKEN)

@@ -5,6 +5,23 @@ from log.log import logger
 import discord
 
 
+class SolutionSelect(discord.ui.Select):
+    def __init__(self, solutions):
+        options = [discord.SelectOption(label=solution[2], value=solution[0]) for solution in solutions]
+        super().__init__(options=options)
+
+    def callback(self, interaction: discord.Interaction):
+        print(self.values)
+        self.view.value = self.values[0]
+
+
+class SolutionViewSelect(discord.ui.View):
+    def __init__(self, solutions):
+        super().__init__()
+        self.value = None
+        self.add_item(SolutionSelect(solutions))
+
+
 class VersionSelect(discord.ui.Select):
     def __init__(self, versions):
         options = [discord.SelectOption(label=version, value=version) for version in versions]

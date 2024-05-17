@@ -1,5 +1,6 @@
 import discord
 import os
+from discord.ext import commands
 from discord import app_commands, Intents
 from log.log import logger
 from dotenv import load_dotenv
@@ -11,16 +12,14 @@ GUILD = discord.Object(897839630852952114)
 GUILD_test = discord.Object(897839630852952114)
 
 
-# Define client
-class SupportClient(discord.Client):
-    def __init__(self, *, intents: discord.Intents):
-        super().__init__(intents=intents)
-        self.tree = app_commands.CommandTree(self)
+# Define bot
+class SupportClient(commands.Bot):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         logger.warning('Bot is initializing.')
 
     async def setup_hook(self) -> None:
-        self.tree.copy_global_to(guild=GUILD)
-        await self.tree.sync(guild=GUILD)
+        await self.tree.sync()
         logger.warning('Bot setup completed.')
 
 
@@ -36,34 +35,45 @@ intents.messages = True
 intents.message_content = True
 
 Database.initialise()
-client = SupportClient(intents=intents)
+bot = SupportClient(command_prefix='!', intents=intents)
+
+bot.tree.sync()
 
 
-@client.event
+@bot.event
 async def on_ready():
-    print(f'Logged in as {client.user} (ID: {client.user.id})')
+    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    print("Connected to the following guilds:")
+    for guild in bot.guilds:
+        print(f'- {guild.name} (ID: {guild.id})')
     print('---------------')
 
+    bot.loop.create_task(bot.tree.sync())
 
-@client.tree.command(guild=GUILD, name='att_aviso', description="Cria um aviso de att.")
+
+@bot.tree.command(name='att_aviso', description="Cria um aviso de att.")
 async def version_view(interaction: discord.Interaction, cliente_nome: str):
     versions = ['3.5.6.9', '3.5.6.8', '3.5.5.7', '3.5.5.6']
     view = VersionSelectView(versions, cliente_nome)
     await interaction.response.send_message('## Selecione a versão atualizada:', view=view, ephemeral=True)
 
-    await client.wait_for('interaction')
+    followup_message = await interaction.original_response()
+    await followup_message.delete(delay=10)
+
+    # Wait for user interaction
+    await bot.wait_for('interaction')
 
     version = view.value
-    channel_id = 1239668293334208673
-    channel = client.get_channel(channel_id)
+    channel_id = 897839632820109397
+    channel = bot.get_channel(channel_id)
     message = (f':warning:ATENÇÃO:warning:\n\n:beginner:{cliente_nome}\n\n:white_check_mark:ATUALIZAÇÃO\n\n'
-               f'SISTEMA 365 - Versão {version}\n\n-----------------------------')
+               f':blue_circle:SISTEMA 365 - Versão {version}\n\n-----------------------------')
 
     logger.info(f'Warning of update created. Cliente: {cliente_nome}, Version: {version}')
     await channel.send(content=message)
 
 
-@client.tree.command(guild=GUILD, name='add_topico', description='Criar um novo tópico')
+@bot.tree.command(name='add_topico', description='Criar um novo tópico')
 async def create_topic(interaction: discord.Interaction, topic_name: str):
     success = Database.set_topic(topic_name)
     if success:
@@ -74,7 +84,7 @@ async def create_topic(interaction: discord.Interaction, topic_name: str):
         await interaction.response.send_message(f':prohibited: Erro: O tópico {topic_name} já existe!', ephemeral=True)
 
 
-@client.tree.command(guild=GUILD, name='editar_topico', description='Edita um tópico já existente')
+@bot.tree.command(name='editar_topico', description='Edita um tópico já existente')
 async def edit_topic(interaction: discord.Interaction, topic_search: str):
     topics = Database.search_topic(topic_search)
 
@@ -83,7 +93,7 @@ async def edit_topic(interaction: discord.Interaction, topic_search: str):
     await interaction.response.send_message('## Selecione o tópico que deseja editar:', view=view, ephemeral=True)
 
     # Wait for the user to select a topic
-    await client.wait_for('interaction')
+    await bot.wait_for('interaction')
 
     # Get the ID of the selected topic
     topic_id = view.topic_id
@@ -93,10 +103,13 @@ async def edit_topic(interaction: discord.Interaction, topic_search: str):
 
     # Ask the user for the new topic_name
     await interaction.followup.send('## Digite o novo nome do tópico:', ephemeral=True)
-    message = await client.wait_for('message')
+    message = await bot.wait_for('message')
 
     # Get the new topic name from the user's message
     new_topic_name = message.content
+
+    followup_message = await interaction.original_response()
+    await followup_message.delete(delay=10)
 
     # Get the new topic in the database
     success = Database.edit_topic(topic_id, new_topic_name)
@@ -106,7 +119,7 @@ async def edit_topic(interaction: discord.Interaction, topic_search: str):
         await interaction.followup.send(f':prohibited: Erro: Falha ao atualizar o tópico com ID **{topic_id}**!', ephemeral=True)
 
 
-@client.tree.command(guild=GUILD, name='show_topicos', description='Exibe todos os tópicos da base de dados')
+@bot.tree.command(name='show_topicos', description='Exibe todos os tópicos da base de dados')
 async def show_topics(interaction: discord.Interaction):
 
     # Get the topics names from database
@@ -124,7 +137,7 @@ async def show_topics(interaction: discord.Interaction):
     await interaction.response.send_message(topics_string)
 
 
-@client.tree.command(guild=GUILD, name='add_solucao', description='Adiciona um nova solução a base de dados')
+@bot.tree.command(name='add_solucao', description='Adiciona um nova solução a base de dados')
 async def add_solution(interaction: discord.Interaction, title: str, description: str, image_url: str):
 
     # Get the topics names from database
@@ -135,10 +148,13 @@ async def add_solution(interaction: discord.Interaction, title: str, description
     await interaction.response.send_message('## Selecione um tópico para a solução:', view=view)
 
     # Wait the user interaction
-    await client.wait_for('interaction')
+    await bot.wait_for('interaction')
 
     # Get the topic_id from topic selected by user
     topic_id = view.value
+
+    followup_message = await interaction.original_response()
+    await followup_message.delete(delay=10)
 
     # Add the solution to the database
     success = Database.add_solution(topic_id, title, description, image_url)
@@ -149,47 +165,67 @@ async def add_solution(interaction: discord.Interaction, title: str, description
         await interaction.followup.send(f':prohibited: Erro: Falha ao salvar solução **{title}**!', ephemeral=True)
 
 
-@client.tree.command(guild=GUILD,name='ver_solucao', description='Procura solução na base de dados')
-async def search_solution(interaction: discord.Interaction, title_search_term: str):
+@bot.tree.command(name='procurar_solucao',description='Procura solução na base de dados')
+async def search_solution(interaction: discord.Interaction):
 
     # Get the topics names from database
     topics = Database.get_all_topics()
 
     # Set the view for topic select
     view = TopicSelectView(topics=topics)
-    await interaction.response.send_message('## Selecione um tópico para procura:', view=view)
+    await interaction.response.send_message('## Selecione um tópico para procura:', view=view, ephemeral=True)
 
     # Wait the user interaction
-    await client.wait_for('interaction')
+    await bot.wait_for('interaction')
 
     # Get the topic_id from topic selected by user
     topic_id = view.value
 
+    followup_message = await interaction.original_response()
+    await followup_message.delete(delay=10)
+
     # Search the solutions
-    solutions = Database.search_solution(topic_id, title_search_term)
+    solutions = Database.get_all_solutions_by_topic_id(topic_id)
 
     if solutions:
-        # Show the solutions
-        for solution in solutions:
-            # Get the url links
-            url_links = solution[-1].split(';')
+        view_solution = SolutionViewSelect(solutions=solutions)
+        await interaction.followup.send('## Selecione a solução que deseja visualizar:', view=view_solution, ephemeral=True)
 
-            await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
-                                            f'### Descrição\n '
-                                            f'{solution[3]}\n'
-                                            f'### Imagem(ns)\n'
-                                            f"{' '.join([f'![Image]({url})' for url in url_links])}\n"
-                                            f"----")
+        # Wait the user interaction
+        await bot.wait_for('interaction')
+
+        id_selected = view_solution.value
+        solution_selected = Database.get_solution_by_id(id_selected)
+
+        followup_message = await interaction.original_response()
+        await followup_message.delete(delay=10)
+
+        if solution_selected:
+            # Show the solutions
+            for solution in solution_selected:
+                # Get the url links
+                url_links = solution[-1].split(';')
+
+                await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
+                                                f'### Descrição\n '
+                                                f'{solution[3]}\n'
+                                                f'### Imagem(ns)\n'
+                                                f"{' '.join([f'![Image]({url})' for url in url_links])}\n"
+                                                f"----")
+        else:
+            await interaction.followup.send(f':prohibited: Nenhuma solução encontrada com os termos pesquisado!', ephemeral=True)
     else:
-        await interaction.followup.send(f':prohibited: Nenhuma solução encontrada com os termos pesquisado!')
+        await interaction.followup.send(f':prohibited: Nenhuma solução encontrada no tópico selecionado!', ephemeral=True)
 
 
-@client.tree.command(guild=GUILD, name='help', description='Mostra todos os comandos disponíveis')
+@bot.tree.command( name='help', description='Mostra todos os comandos disponíveis')
 async def show_commands(interaction: discord.Interaction):
-    # Get the available commands
-    commands = client.tree.get_commands(guild=interaction.guild)
 
-    commands_string = '## :sparkles: Comandos SupportMate365\nTodos os comandos disponíveis são:\n'
+    # Get the available commands
+    commands = bot.tree.get_commands(guild=interaction.guild)
+
+    commands_string = ('## :sparkles: Comandos SupportMate365\n'
+                       'Todos os comandos disponíveis são:\n')
     for command in commands:
         commands_string += f'- **{command.name}**: {command.description}\n'
 
@@ -202,6 +238,10 @@ async def show_commands(interaction: discord.Interaction):
     await interaction.user.dm_channel.send(commands_string)
 
     # Send the confirmation
-    await interaction.response.send_message(":white_check_mark: Enviei a lista de comandos par sua DM!", ephemeral=True)
+    await interaction.response.send_message(":white_check_mark: Enviei a lista de comandos para sua DM!", ephemeral=True)
 
-client.run(TOKEN)
+# @bot.tree.command(name='apagar_solucao', description='Apaga uma solução do tópico selecionado')
+# async def delete_solution(interaction: discord.Interaction):
+
+
+bot.run(TOKEN)

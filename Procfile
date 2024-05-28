@@ -1,1 +1,1 @@
-web: python src/client.py
+bot: python src/client.py

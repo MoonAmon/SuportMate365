@@ -244,4 +244,33 @@ async def show_commands(interaction: discord.Interaction):
 # async def delete_solution(interaction: discord.Interaction):
 
 
+@bot.tree.command(name='chamados_pedentes', description='Cria uma mensagem com os tickets pendentes, separar numeração com ","')
+async def pending_tickets(
+        interaction: discord.Interaction,
+        aguardando_tratativa: str,
+        escalonado_css: str,
+        aguardando_cliente: str):
+
+    aguardando_tratativa = ['#' + chamado for chamado in aguardando_tratativa.split(',')]
+    escalonado_css = ['#' + chamado for chamado in escalonado_css.split(',')]
+    aguardando_cliente = ['#' + chamado for chamado in aguardando_cliente.split(',')]
+
+    message_str = '## :ticket:Chamados Pendentes:ticket:\n'
+    message_str += '### **Aguardando Tratativa**\n'
+    message_str += '\n'.join(aguardando_tratativa)
+    message_str += '\n### **Escalonado CSS**\n'
+    message_str += '\n'.join(escalonado_css)
+    message_str += '\n### **Aguardando Cliente**\n'
+    message_str += '\n'.join(aguardando_cliente)
+
+    channel_id = 1075054483551301683
+    channel = bot.get_channel(channel_id)
+    await channel.send(message_str)
+
+    await interaction.response.send_message(":white_check_mark: Mensagem de tickets pedentes criado com sucesso! :ticket:",
+                                            ephemeral=True)
+
+
+
+
 bot.run(TOKEN)

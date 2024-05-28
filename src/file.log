@@ -1415,3 +1415,269 @@
 2024-05-17 08:54:05,566 - log.log - INFO - Transaction committed
 2024-05-17 08:54:05,566 - log.log - INFO - Returning a connection to the pool
 2024-05-17 08:54:05,971 - log.log - INFO - Solution Erro não Especificado saved successfully into database 
+2024-05-18 12:35:20,442 - log.log - INFO - Getting a connection from the pool
+2024-05-18 12:35:20,448 - log.log - INFO - Database connection opened.
+2024-05-18 12:35:20,454 - log.log - INFO - Successfully get all the topics names
+2024-05-18 12:35:20,454 - log.log - INFO - Transaction committed
+2024-05-18 12:35:20,454 - log.log - INFO - Returning a connection to the pool
+2024-05-18 12:35:23,855 - log.log - INFO - Getting a connection from the pool
+2024-05-18 12:35:23,855 - log.log - INFO - Database connection opened.
+2024-05-18 12:35:23,856 - log.log - INFO - Getting all the solution with "4" topic ID
+2024-05-18 12:35:23,856 - log.log - INFO - Transaction committed
+2024-05-18 12:35:23,856 - log.log - INFO - Returning a connection to the pool
+2024-05-18 12:35:51,282 - log.log - INFO - Getting a connection from the pool
+2024-05-18 12:35:51,282 - log.log - INFO - Database connection opened.
+2024-05-18 12:35:51,283 - log.log - INFO - Successfully get all the topics names
+2024-05-18 12:35:51,283 - log.log - INFO - Transaction committed
+2024-05-18 12:35:51,283 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:22:02,057 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:22:02,066 - log.log - INFO - Database connection opened.
+2024-05-25 10:22:02,088 - log.log - INFO - Successfully get all the topics names
+2024-05-25 10:22:02,089 - log.log - INFO - Transaction committed
+2024-05-25 10:22:02,089 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:35:24,823 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:35:24,823 - log.log - INFO - Database connection opened.
+2024-05-25 10:35:24,831 - log.log - INFO - Topics table created
+2024-05-25 10:35:24,831 - log.log - INFO - Solutions table created
+2024-05-25 10:35:24,832 - log.log - INFO - Transaction committed
+2024-05-25 10:35:24,832 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:35:24,832 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:35:24,833 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:35:25,919 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:37:12,554 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:37:12,554 - log.log - INFO - Database connection opened.
+2024-05-25 10:37:12,556 - log.log - INFO - Topics table created
+2024-05-25 10:37:12,557 - log.log - INFO - Solutions table created
+2024-05-25 10:37:12,557 - log.log - INFO - Transaction committed
+2024-05-25 10:37:12,557 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:37:12,557 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:37:12,557 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:37:13,414 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:40:43,175 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:40:43,176 - log.log - INFO - Database connection opened.
+2024-05-25 10:40:43,178 - log.log - INFO - Topics table created
+2024-05-25 10:40:43,178 - log.log - INFO - Solutions table created
+2024-05-25 10:40:43,179 - log.log - INFO - Transaction committed
+2024-05-25 10:40:43,179 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:40:43,179 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:40:43,179 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:40:44,126 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:43:31,317 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:43:31,317 - log.log - INFO - Database connection opened.
+2024-05-25 10:43:31,319 - log.log - INFO - Topics table created
+2024-05-25 10:43:31,320 - log.log - INFO - Solutions table created
+2024-05-25 10:43:31,320 - log.log - INFO - Transaction committed
+2024-05-25 10:43:31,320 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:43:31,320 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:43:31,321 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:43:32,191 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:45:17,301 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:45:17,302 - log.log - INFO - Database connection opened.
+2024-05-25 10:45:17,305 - log.log - INFO - Topics table created
+2024-05-25 10:45:17,306 - log.log - INFO - Solutions table created
+2024-05-25 10:45:17,306 - log.log - INFO - Transaction committed
+2024-05-25 10:45:17,306 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:45:17,306 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:45:17,307 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:45:18,233 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:48:58,136 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:48:58,136 - log.log - INFO - Database connection opened.
+2024-05-25 10:48:58,140 - log.log - INFO - Topics table created
+2024-05-25 10:48:58,140 - log.log - INFO - Solutions table created
+2024-05-25 10:48:58,140 - log.log - INFO - Transaction committed
+2024-05-25 10:48:58,140 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:48:58,140 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:48:58,141 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:48:59,121 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:49:34,685 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:49:34,685 - log.log - INFO - Database connection opened.
+2024-05-25 10:49:34,687 - log.log - INFO - Topics table created
+2024-05-25 10:49:34,687 - log.log - INFO - Solutions table created
+2024-05-25 10:49:34,687 - log.log - INFO - Transaction committed
+2024-05-25 10:49:34,687 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:49:34,687 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:49:34,689 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:50:28,689 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:50:28,689 - log.log - INFO - Database connection opened.
+2024-05-25 10:50:28,692 - log.log - INFO - Topics table created
+2024-05-25 10:50:28,692 - log.log - INFO - Solutions table created
+2024-05-25 10:50:28,692 - log.log - INFO - Transaction committed
+2024-05-25 10:50:28,692 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:50:28,692 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:50:28,693 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:50:29,531 - log.log - WARNING - Bot setup completed.
+2024-05-25 10:52:34,796 - log.log - INFO - Getting a connection from the pool
+2024-05-25 10:52:34,796 - log.log - INFO - Database connection opened.
+2024-05-25 10:52:34,797 - log.log - INFO - Topics table created
+2024-05-25 10:52:34,798 - log.log - INFO - Solutions table created
+2024-05-25 10:52:34,798 - log.log - INFO - Transaction committed
+2024-05-25 10:52:34,798 - log.log - INFO - Returning a connection to the pool
+2024-05-25 10:52:34,798 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-25 10:52:34,799 - log.log - WARNING - Bot is initializing.
+2024-05-25 10:52:35,695 - log.log - WARNING - Bot setup completed.
+2024-05-27 09:55:06,752 - log.log - INFO - Getting a connection from the pool
+2024-05-27 09:55:06,753 - log.log - INFO - Database connection opened.
+2024-05-27 09:55:06,770 - log.log - INFO - Topics table created
+2024-05-27 09:55:06,770 - log.log - INFO - Solutions table created
+2024-05-27 09:55:06,770 - log.log - INFO - Transaction committed
+2024-05-27 09:55:06,770 - log.log - INFO - Returning a connection to the pool
+2024-05-27 09:55:06,770 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-27 09:55:06,771 - log.log - WARNING - Bot is initializing.
+2024-05-27 09:55:07,697 - log.log - WARNING - Bot setup completed.
+2024-05-27 10:30:13,566 - log.log - INFO - Getting a connection from the pool
+2024-05-27 10:30:13,566 - log.log - INFO - Database connection opened.
+2024-05-27 10:30:13,587 - log.log - INFO - Successfully get all the topics names
+2024-05-27 10:30:13,588 - log.log - INFO - Transaction committed
+2024-05-27 10:30:13,588 - log.log - INFO - Returning a connection to the pool
+2024-05-27 10:30:17,722 - log.log - INFO - Getting a connection from the pool
+2024-05-27 10:30:17,722 - log.log - INFO - Database connection opened.
+2024-05-27 10:30:17,734 - log.log - INFO - Getting all the solution with "1" topic ID
+2024-05-27 10:30:17,734 - log.log - INFO - Transaction committed
+2024-05-27 10:30:17,735 - log.log - INFO - Returning a connection to the pool
+2024-05-27 10:30:31,057 - log.log - INFO - Getting a connection from the pool
+2024-05-27 10:30:31,058 - log.log - INFO - Database connection opened.
+2024-05-27 10:30:31,058 - log.log - INFO - Successfully get all the topics names
+2024-05-27 10:30:31,058 - log.log - INFO - Transaction committed
+2024-05-27 10:30:31,058 - log.log - INFO - Returning a connection to the pool
+2024-05-27 10:30:35,530 - log.log - INFO - Getting a connection from the pool
+2024-05-27 10:30:35,530 - log.log - INFO - Database connection opened.
+2024-05-27 10:30:35,530 - log.log - INFO - Getting all the solution with "7" topic ID
+2024-05-27 10:30:35,530 - log.log - INFO - Transaction committed
+2024-05-27 10:30:35,530 - log.log - INFO - Returning a connection to the pool
+2024-05-27 10:30:38,039 - log.log - INFO - Getting a connection from the pool
+2024-05-27 10:30:38,039 - log.log - INFO - Database connection opened.
+2024-05-27 10:30:38,040 - log.log - INFO - Getting all the solution with "4" topic ID
+2024-05-27 10:30:38,040 - log.log - INFO - Transaction committed
+2024-05-27 10:30:38,040 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:31:20,644 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:31:20,645 - log.log - INFO - Database connection opened.
+2024-05-27 11:31:20,662 - log.log - INFO - Transaction committed
+2024-05-27 11:31:20,662 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:31:20,663 - log.log - INFO - Topic successfully created with name Senhas
+2024-05-27 11:31:58,354 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:31:58,355 - log.log - INFO - Database connection opened.
+2024-05-27 11:31:58,355 - log.log - INFO - Successfully get all the topics names
+2024-05-27 11:31:58,355 - log.log - INFO - Transaction committed
+2024-05-27 11:31:58,355 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:32:04,045 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:32:04,046 - log.log - INFO - Database connection opened.
+2024-05-27 11:32:04,056 - log.log - INFO - Successfully add the solution Senhas Banco de Dados into topic ID 8.
+2024-05-27 11:32:04,057 - log.log - INFO - Transaction committed
+2024-05-27 11:32:04,057 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:32:04,774 - log.log - INFO - Solution Senhas Banco de Dados saved successfully into database 
+2024-05-27 11:33:17,193 - log.log - INFO - Warning of update created. Cliente: claudete, Version: 3.5.6.9
+2024-05-27 11:34:36,123 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:34:36,123 - log.log - INFO - Database connection opened.
+2024-05-27 11:34:36,124 - log.log - INFO - Successfully get all the topics names
+2024-05-27 11:34:36,124 - log.log - INFO - Transaction committed
+2024-05-27 11:34:36,124 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:34:42,780 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:34:42,780 - log.log - INFO - Database connection opened.
+2024-05-27 11:34:42,780 - log.log - INFO - Getting all the solution with "1" topic ID
+2024-05-27 11:34:42,781 - log.log - INFO - Transaction committed
+2024-05-27 11:34:42,781 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:35:51,368 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:35:51,368 - log.log - INFO - Database connection opened.
+2024-05-27 11:35:51,368 - log.log - INFO - Successfully get all the topics names
+2024-05-27 11:35:51,369 - log.log - INFO - Transaction committed
+2024-05-27 11:35:51,369 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:35:56,447 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:35:56,447 - log.log - INFO - Database connection opened.
+2024-05-27 11:35:56,447 - log.log - INFO - Getting all the solution with "8" topic ID
+2024-05-27 11:35:56,448 - log.log - INFO - Transaction committed
+2024-05-27 11:35:56,448 - log.log - INFO - Returning a connection to the pool
+2024-05-27 11:35:58,953 - log.log - INFO - Getting a connection from the pool
+2024-05-27 11:35:58,953 - log.log - INFO - Database connection opened.
+2024-05-27 11:35:58,954 - log.log - INFO - Getting all the solution with "5" topic ID
+2024-05-27 11:35:58,954 - log.log - INFO - Transaction committed
+2024-05-27 11:35:58,954 - log.log - INFO - Returning a connection to the pool
+2024-05-27 19:35:05,300 - log.log - INFO - Getting a connection from the pool
+2024-05-27 19:35:05,301 - log.log - INFO - Database connection opened.
+2024-05-27 19:35:05,308 - log.log - INFO - Transaction committed
+2024-05-27 19:35:05,308 - log.log - INFO - Returning a connection to the pool
+2024-05-27 19:35:05,308 - log.log - INFO - Topic successfully created with name Milvus
+2024-05-28 07:55:56,907 - log.log - INFO - Getting a connection from the pool
+2024-05-28 07:55:56,907 - log.log - INFO - Database connection opened.
+2024-05-28 07:55:56,920 - log.log - INFO - Topics table created
+2024-05-28 07:55:56,920 - log.log - INFO - Solutions table created
+2024-05-28 07:55:56,920 - log.log - INFO - Transaction committed
+2024-05-28 07:55:56,920 - log.log - INFO - Returning a connection to the pool
+2024-05-28 07:55:56,920 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-28 07:55:56,923 - log.log - WARNING - Bot is initializing.
+2024-05-28 07:56:59,667 - log.log - INFO - Getting a connection from the pool
+2024-05-28 07:56:59,667 - log.log - INFO - Database connection opened.
+2024-05-28 07:56:59,668 - log.log - INFO - Topics table created
+2024-05-28 07:56:59,669 - log.log - INFO - Solutions table created
+2024-05-28 07:56:59,669 - log.log - INFO - Transaction committed
+2024-05-28 07:56:59,669 - log.log - INFO - Returning a connection to the pool
+2024-05-28 07:56:59,669 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-28 07:56:59,669 - log.log - WARNING - Bot is initializing.
+2024-05-28 07:57:00,621 - log.log - WARNING - Bot setup completed.
+2024-05-28 08:00:43,658 - log.log - INFO - Getting a connection from the pool
+2024-05-28 08:00:43,658 - log.log - INFO - Database connection opened.
+2024-05-28 08:00:43,683 - log.log - ERROR - Topic Milvus already exists
+2024-05-28 08:00:43,684 - log.log - INFO - Transaction committed
+2024-05-28 08:00:43,684 - log.log - INFO - Returning a connection to the pool
+2024-05-28 08:00:43,684 - log.log - ERROR - Failed to create a topic with name Milvus
+2024-05-28 08:02:39,365 - log.log - INFO - Getting a connection from the pool
+2024-05-28 08:02:39,365 - log.log - INFO - Database connection opened.
+2024-05-28 08:02:39,366 - log.log - INFO - Successfully get all the topics names
+2024-05-28 08:02:39,366 - log.log - INFO - Transaction committed
+2024-05-28 08:02:39,366 - log.log - INFO - Returning a connection to the pool
+2024-05-28 08:44:09,566 - log.log - INFO - Getting a connection from the pool
+2024-05-28 08:44:09,567 - log.log - INFO - Database connection opened.
+2024-05-28 08:44:09,568 - log.log - INFO - Successfully get all the topics names
+2024-05-28 08:44:09,568 - log.log - INFO - Transaction committed
+2024-05-28 08:44:09,568 - log.log - INFO - Returning a connection to the pool
+2024-05-28 08:44:14,078 - log.log - INFO - Getting a connection from the pool
+2024-05-28 08:44:14,078 - log.log - INFO - Database connection opened.
+2024-05-28 08:44:14,096 - log.log - INFO - Successfully add the solution Cadastro de Ticket - Milvus into topic ID 9.
+2024-05-28 08:44:14,097 - log.log - INFO - Transaction committed
+2024-05-28 08:44:14,097 - log.log - INFO - Returning a connection to the pool
+2024-05-28 08:44:14,444 - log.log - INFO - Solution Cadastro de Ticket - Milvus saved successfully into database 
+2024-05-28 10:29:35,992 - log.log - INFO - Getting a connection from the pool
+2024-05-28 10:29:35,993 - log.log - INFO - Database connection opened.
+2024-05-28 10:29:35,994 - log.log - INFO - Successfully get all the topics names
+2024-05-28 10:29:35,995 - log.log - INFO - Transaction committed
+2024-05-28 10:29:35,995 - log.log - INFO - Returning a connection to the pool
+2024-05-28 10:29:39,427 - log.log - INFO - Getting a connection from the pool
+2024-05-28 10:29:39,427 - log.log - INFO - Database connection opened.
+2024-05-28 10:29:39,428 - log.log - INFO - Getting all the solution with "8" topic ID
+2024-05-28 10:29:39,428 - log.log - INFO - Transaction committed
+2024-05-28 10:29:39,428 - log.log - INFO - Returning a connection to the pool
+2024-05-28 10:29:41,853 - log.log - INFO - Getting a connection from the pool
+2024-05-28 10:29:41,854 - log.log - INFO - Database connection opened.
+2024-05-28 10:29:41,854 - log.log - INFO - Getting all the solution with "5" topic ID
+2024-05-28 10:29:41,854 - log.log - INFO - Transaction committed
+2024-05-28 10:29:41,854 - log.log - INFO - Returning a connection to the pool
+2024-05-28 12:18:21,354 - log.log - INFO - Getting a connection from the pool
+2024-05-28 12:18:21,354 - log.log - INFO - Database connection opened.
+2024-05-28 12:18:21,357 - log.log - INFO - Successfully get all the topics names
+2024-05-28 12:18:21,357 - log.log - INFO - Transaction committed
+2024-05-28 12:18:21,357 - log.log - INFO - Returning a connection to the pool
+2024-05-28 12:18:29,396 - log.log - INFO - Getting a connection from the pool
+2024-05-28 12:18:29,396 - log.log - INFO - Database connection opened.
+2024-05-28 12:18:29,397 - log.log - INFO - Successfully add the solution Inserir Informações Adicionais NFe (Procon) into topic ID 5.
+2024-05-28 12:18:29,400 - log.log - INFO - Transaction committed
+2024-05-28 12:18:29,400 - log.log - INFO - Returning a connection to the pool
+2024-05-28 12:18:29,791 - log.log - INFO - Solution Inserir Informações Adicionais NFe (Procon) saved successfully into database 
+2024-05-28 12:40:20,051 - log.log - INFO - Getting a connection from the pool
+2024-05-28 12:40:20,051 - log.log - INFO - Database connection opened.
+2024-05-28 12:40:20,052 - log.log - INFO - Successfully get all the topics names
+2024-05-28 12:40:20,052 - log.log - INFO - Transaction committed
+2024-05-28 12:40:20,053 - log.log - INFO - Returning a connection to the pool
+2024-05-28 12:40:27,080 - log.log - INFO - Getting a connection from the pool
+2024-05-28 12:40:27,080 - log.log - INFO - Database connection opened.
+2024-05-28 12:40:27,081 - log.log - INFO - Successfully add the solution Inserir Informações Adicionais NFC (Procon) into topic ID 1.
+2024-05-28 12:40:27,085 - log.log - INFO - Transaction committed
+2024-05-28 12:40:27,085 - log.log - INFO - Returning a connection to the pool
+2024-05-28 12:40:27,368 - log.log - INFO - Solution Inserir Informações Adicionais NFC (Procon) saved successfully into database 
+2024-05-28 17:07:51,815 - log.log - INFO - Getting a connection from the pool
+2024-05-28 17:07:51,815 - log.log - INFO - Database connection opened.
+2024-05-28 17:07:51,818 - log.log - INFO - Topics table created
+2024-05-28 17:07:51,818 - log.log - INFO - Solutions table created
+2024-05-28 17:07:51,819 - log.log - INFO - Transaction committed
+2024-05-28 17:07:51,819 - log.log - INFO - Returning a connection to the pool
+2024-05-28 17:07:51,819 - log.log - INFO - Database connection pool initialized (Database: suportmate)
+2024-05-28 17:07:51,820 - log.log - WARNING - Bot is initializing.
+2024-05-28 17:07:52,741 - log.log - WARNING - Bot setup completed.

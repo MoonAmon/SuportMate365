@@ -1,4 +1,5 @@
 import psycopg2
+import os
 from psycopg2 import pool
 from utils.utils import Config
 from log.log import logger
@@ -11,7 +12,8 @@ class DatabaseConnection:
         self.cursor = None
 
     def __enter__(self):
-        self.conn = Database.get_connection()
+        DATABASE_URL = os.environ['DATABASE_URL']
+        self.conn = Database.get_connection(DATABASE_URL, sslmode='require')
         self.cursor = self.conn.cursor()
         logger.info('Database connection opened.')
         return self.cursor

@@ -27,7 +27,6 @@ class DatabaseConnection:
             self.cursor.close()
             self.conn.commit()
             logger.info('Transaction committed')
-        Database.return_connection(self.conn)
 
 
 class Database:
@@ -35,14 +34,14 @@ class Database:
 
     @staticmethod
     def initialise():
-        config_data = Config.get_config()
+        Database.__connection_pool = psycopg2.connect(DATABASE_URL)
         Database.create_tables()
         logger.info(f'Database connection pool initialized')
 
     @staticmethod
     def get_connection():
-        logger.info('Getting a connection from the pool')
-        return Database.__connection_pool.getconn()
+        logger.info('Getting the database connection')
+        return Database.__connection_pool
 
     @staticmethod
     def return_connection(connection):
@@ -50,9 +49,9 @@ class Database:
         Database.__connection_pool.putconn(connection)
                 
     @staticmethod
-    def close_all_connections():
+    def close_connections():
         logger.info('All connections in the pool have been closed')
-        Database.__connection_pool.closeall()
+        Database.__connection_pool.close()
 
     @staticmethod
     def create_tables():

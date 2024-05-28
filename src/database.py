@@ -14,7 +14,7 @@ class DatabaseConnection:
         self.cursor = None
 
     def __enter__(self):
-        self.conn = Database.get_connection(DATABASE_URL)
+        self.conn = psycopg2.get_connection(DATABASE_URL)
         self.cursor = self.conn.cursor()
         logger.info('Database connection opened.')
         return self.cursor

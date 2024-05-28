@@ -5,6 +5,8 @@ from utils.utils import Config
 from log.log import logger
 from datetime import datetime
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
 
 class DatabaseConnection:
     def __init__(self):
@@ -12,7 +14,6 @@ class DatabaseConnection:
         self.cursor = None
 
     def __enter__(self):
-        DATABASE_URL = os.environ['DATABASE_URL']
         self.conn = Database.get_connection(DATABASE_URL, sslmode='require')
         self.cursor = self.conn.cursor()
         logger.info('Database connection opened.')
@@ -35,7 +36,7 @@ class Database:
     @staticmethod
     def initialise():
         config_data = Config.get_config()
-        Database.__connection_pool = pool.SimpleConnectionPool(1,30,)
+        Database.__connection_pool = pool.SimpleConnectionPool(1, 30, DATABASE_URL)
         Database.create_tables()
         logger.info(f'Database connection pool initialized')
 

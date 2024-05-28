@@ -35,12 +35,7 @@ class Database:
     @staticmethod
     def initialise():
         config_data = Config.get_config()
-        Database.__connection_pool = pool.SimpleConnectionPool(20,
-                                                               10,
-                                                               user=config_data['DB_USER'],
-                                                               password=config_data['DB_PASSWORD'],
-                                                               database=config_data['DB_NAME'],
-                                                               host=config_data['DB_HOST'])
+        Database.__connection_pool = pool.SimpleConnectionPool(10,30,)
         Database.create_tables()
         logger.info(f'Database connection pool initialized (Database: {config_data['DB_NAME']})')
 

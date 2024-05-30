@@ -22,22 +22,40 @@ class SolutionViewSelect(discord.ui.View):
         self.add_item(SolutionSelect(solutions))
 
 
-class VersionSelect(discord.ui.Select):
+class VersionGestorSelect(discord.ui.Select):
     def __init__(self, versions):
-        options = [discord.SelectOption(label=version, value=version) for version in versions]
+        options = [discord.SelectOption(label=version[1], value=version[0]) for version in versions]
         super().__init__(options=options)
 
     async def callback(self, interaction: Interaction):
         self.view.value = self.values[0]
-        await interaction.response.send_message(f'Aviso criado para versão: {self.values[0]}', ephemeral=True)
+        await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
 
 
-class VersionSelectView(discord.ui.View):
+class VersionPdvSelect(discord.ui.Select):
+    def __init__(self, versions):
+        options = [discord.SelectOption(label=version[1], value=version[0]) for version in versions]
+        super().__init__(options=options)
+
+    async def callback(self, interaction: Interaction):
+        self.view.value = self.values[0]
+        await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
+
+
+class VersionGestorSelectView(discord.ui.View):
     def __init__(self, versions, cliente_nome):
         super().__init__()
         self.value = None
         self.cliente_nome = cliente_nome
-        self.add_item(VersionSelect(versions))
+        self.add_item(VersionGestorSelect(versions))
+
+
+class VersionPdvSelectView(discord.ui.View):
+    def __init__(self, versions, cliente_nome):
+        super().__init__()
+        self.value = None
+        self.cliente_nome = cliente_nome
+        self.add_item(VersionPdvSelect(versions))
 
 
 class TopicSelect(discord.ui.Select):

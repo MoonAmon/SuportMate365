@@ -14,7 +14,7 @@ GUILD_test = discord.Object(897839630852952114)
 
 # Define bot
 class SupportClient(commands.Bot):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: object, **kwargs: object) -> object:
         super().__init__(*args, **kwargs)
         logger.warning('Bot is initializing.')
 
@@ -48,37 +48,17 @@ async def on_ready():
         print(f'- {guild.name} (ID: {guild.id})')
     print('---------------')
 
-    bot.loop.create_task(bot.tree.sync())
-
-
-@bot.tree.command(name='att_aviso', description="Cria um aviso de att.")
-async def version_view(interaction: discord.Interaction, cliente_nome: str):
-    versions = ['3.5.6.9', '3.5.6.8', '3.5.5.7', '3.5.5.6']
-    view = VersionSelectView(versions, cliente_nome)
-    await interaction.response.send_message('## Selecione a versão atualizada:', view=view, ephemeral=True)
-
-    followup_message = await interaction.original_response()
-    await followup_message.delete(delay=10)
-
-    # Wait for user interaction
-    await bot.wait_for('interaction')
-
-    version = view.value
-    channel_id = 897839632820109397
-    channel = bot.get_channel(channel_id)
-    message = (f':warning:ATENÇÃO:warning:\n\n:beginner:{cliente_nome}\n\n:white_check_mark:ATUALIZAÇÃO\n\n'
-               f':blue_circle:SISTEMA 365 - Versão {version}\n\n-----------------------------')
-
-    logger.info(f'Warning of update created. Cliente: {cliente_nome}, Version: {version}')
-    await channel.send(content=message)
+    await bot.loop.create_task(bot.tree.sync())
 
 
 @bot.tree.command(name='add_topico', description='Criar um novo tópico')
 async def create_topic(interaction: discord.Interaction, topic_name: str):
     success = Database.set_topic(topic_name)
+
     if success:
         logger.info(f'Topic successfully created with name {topic_name}')
-        await interaction.response.send_message(f':white_check_mark: Tópico {topic_name} criado com sucesso!', ephemeral=True)
+        await interaction.response.send_message(f':white_check_mark: Tópico {topic_name} criado com sucesso!',
+                                                ephemeral=True)
     else:
         logger.error(f'Failed to create a topic with name {topic_name}')
         await interaction.response.send_message(f':prohibited: Erro: O tópico {topic_name} já existe!', ephemeral=True)
@@ -114,14 +94,15 @@ async def edit_topic(interaction: discord.Interaction, topic_search: str):
     # Get the new topic in the database
     success = Database.edit_topic(topic_id, new_topic_name)
     if success:
-        await interaction.followup.send(f':white_check_mark: Tópico **"{topic_name}"** atualizado para **"{new_topic_name}"** com sucesso!', ephemeral=True)
+        await interaction.followup.send(f':white_check_mark: Tópico **"{topic_name}"**'
+                                        f' atualizado para **"{new_topic_name}"** com sucesso!', ephemeral=True)
     else:
-        await interaction.followup.send(f':prohibited: Erro: Falha ao atualizar o tópico com ID **{topic_id}**!', ephemeral=True)
+        await interaction.followup.send(f':prohibited: Erro: Falha ao atualizar o tópico com ID **{topic_id}**!',
+                                        ephemeral=True)
 
 
 @bot.tree.command(name='show_topicos', description='Exibe todos os tópicos da base de dados')
 async def show_topics(interaction: discord.Interaction):
-
     # Get the topics names from database
     topic_names = Database.get_all_topics()
 
@@ -139,7 +120,6 @@ async def show_topics(interaction: discord.Interaction):
 
 @bot.tree.command(name='add_solucao', description='Adiciona um nova solução a base de dados')
 async def add_solution(interaction: discord.Interaction, title: str, description: str, image_url: str):
-
     # Get the topics names from database
     topic_names = Database.get_all_topics()
 
@@ -165,9 +145,8 @@ async def add_solution(interaction: discord.Interaction, title: str, description
         await interaction.followup.send(f':prohibited: Erro: Falha ao salvar solução **{title}**!', ephemeral=True)
 
 
-@bot.tree.command(name='procurar_solucao',description='Procura solução na base de dados')
+@bot.tree.command(name='procurar_solucao', description='Procura solução na base de dados')
 async def search_solution(interaction: discord.Interaction):
-
     # Get the topics names from database
     topics = Database.get_all_topics()
 
@@ -189,7 +168,8 @@ async def search_solution(interaction: discord.Interaction):
 
     if solutions:
         view_solution = SolutionViewSelect(solutions=solutions)
-        await interaction.followup.send('## Selecione a solução que deseja visualizar:', view=view_solution, ephemeral=True)
+        await interaction.followup.send('## Selecione a solução que deseja visualizar:', view=view_solution,
+                                        ephemeral=True)
 
         # Wait the user interaction
         await bot.wait_for('interaction')
@@ -213,14 +193,15 @@ async def search_solution(interaction: discord.Interaction):
                                                 f"{' '.join([f'![Image]({url})' for url in url_links])}\n"
                                                 f"----")
         else:
-            await interaction.followup.send(f':prohibited: Nenhuma solução encontrada com os termos pesquisado!', ephemeral=True)
+            await interaction.followup.send(f':prohibited: Nenhuma solução encontrada com os termos pesquisado!',
+                                            ephemeral=True)
     else:
-        await interaction.followup.send(f':prohibited: Nenhuma solução encontrada no tópico selecionado!', ephemeral=True)
+        await interaction.followup.send(f':prohibited: Nenhuma solução encontrada no tópico selecionado!',
+                                        ephemeral=True)
 
 
-@bot.tree.command( name='help', description='Mostra todos os comandos disponíveis')
+@bot.tree.command(name='ajuda', description='Mostra todos os comandos disponíveis')
 async def show_commands(interaction: discord.Interaction):
-
     # Get the available commands
     commands = bot.tree.get_commands(guild=interaction.guild)
 
@@ -238,19 +219,21 @@ async def show_commands(interaction: discord.Interaction):
     await interaction.user.dm_channel.send(commands_string)
 
     # Send the confirmation
-    await interaction.response.send_message(":white_check_mark: Enviei a lista de comandos para sua DM!", ephemeral=True)
+    await interaction.response.send_message(":white_check_mark: Enviei a lista de comandos para sua DM!",
+                                            ephemeral=True)
+
 
 # @bot.tree.command(name='apagar_solucao', description='Apaga uma solução do tópico selecionado')
 # async def delete_solution(interaction: discord.Interaction):
 
 
-@bot.tree.command(name='chamados_pedentes', description='Cria uma mensagem com os tickets pendentes, separar numeração com ","')
+@bot.tree.command(name='chamados_pedentes',
+                  description='Cria uma mensagem com os tickets pendentes, separar numeração com ","')
 async def pending_tickets(
         interaction: discord.Interaction,
         aguardando_tratativa: str,
         escalonado_css: str,
         aguardando_cliente: str):
-
     aguardando_tratativa = ['#' + chamado for chamado in aguardando_tratativa.split(',')]
     escalonado_css = ['#' + chamado for chamado in escalonado_css.split(',')]
     aguardando_cliente = ['#' + chamado for chamado in aguardando_cliente.split(',')]
@@ -267,10 +250,62 @@ async def pending_tickets(
     channel = bot.get_channel(channel_id)
     await channel.send(message_str)
 
-    await interaction.response.send_message(":white_check_mark: Mensagem de tickets pedentes criado com sucesso! :ticket:",
-                                            ephemeral=True)
+    await interaction.response.send_message(
+        ":white_check_mark: Mensagem de tickets pedentes criado com sucesso! :ticket:",
+        ephemeral=True)
 
 
+@bot.tree.command(name='add_cliente', description='Adiciona cliente na base de dados.')
+async def add_cliente(interaction: discord.Interaction, name: str):
+    versions_gestor = Database.get_versions_gestor()
+    versions_pdv = Database.get_versions_pdv()
+
+    view = VersionGestorSelectView(versions_gestor)
+    await interaction.response.send_message('## :page_with_curl: Selecione a versão do sistema gestor do cliente:'
+                                            , view=view, ephemeral=True)
+
+    # Wait for user interaction
+    await bot.wait_for('interaction')
+
+    version_gestor = view.value
+
+    view = VersionPdvSelectView(versions_pdv)
+    await interaction.followup.send('## :moneybag: Selecione a versão do sistema PDV do cliente:'
+                                    , view=view, ephemeral=True)
+
+    await bot.wait_for('interaction')
+
+    version_pdv = view.value
+
+    success = Database.add_cliente(name, version_gestor, version_pdv)
+
+    if success:
+        await interaction.response.send_message(f':white_check_mark: Cliente {name} criado com sucesso!',
+                                                ephemeral=True)
+    else:
+        await interaction.response.send_message(f':prohibited: Erro: Erro ao criar cliente {name}.', ephemeral=True)
+
+
+@bot.tree.command(name='add_versao_gestor', description='Adiciona uma versão do sistema gestor na base de dados.')
+async def add_version_gestor(interaction: discord.Interaction, version: str):
+    success = Database.add_version_gestor(version)
+
+    if success:
+        await interaction.response.send_message(f':white_check_mark: Versão {version} criado com sucesso!',
+                                                ephemeral=True)
+    else:
+        await interaction.response.send_message(f':prohibited: Erro: Versão {version} já existe!', ephemeral=True)
+
+
+@bot.tree.command(name='add_versao_pdv', description='Adiciona uma versão do sistema PDV na base de dados.')
+async def add_version_pdv(interaction: discord.Interaction, version: str):
+    success = Database.add_version_pdv(version)
+
+    if success:
+        await interaction.response.send_message(f':white_check_mark: Versão {version} criado com sucesso!',
+                                                ephemeral=True)
+    else:
+        await interaction.response.send_message(f':prohibited: Erro: Versão {version} já existe!', ephemeral=True)
 
 
 bot.run(TOKEN)

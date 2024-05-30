@@ -73,9 +73,32 @@ class Database:
             solucao_desc TEXT NULL,
             created_at TIMESTAMP NOT NULL,
             modified_at TIMESTAMP NULL,
-            image_url TEXT,
+            image_url TEXT NULL,
             FOREIGN KEY(topico_id) REFERENCES topicos(id))""")
             logger.info('Solutions table created')
+
+            # Create versoes_sis_gestor table
+            cursor.execute("""CREATE TABLE IF NOT EXISTS versoes_sis_gestor(
+            id SERIAL PRIMARY KEY,
+            versao TEXT NOT NULL UNIQUE )""")
+            logger.info('Versoes_sis table created')
+
+            # Create versoes_sis_pdv table
+            cursor.execute("""CREATE TABLE IF NOT EXISTS versoes_sis_pdv(
+            id SERIAL PRIMARY KEY,
+            versao TEXT NOT NULL UNIQUE )""")
+            logger.info('Versoes_sis_pdv table created')
+
+            # Create clientes table
+            cursor.execute("""CREATE TABLE IF NOT EXISTS clientes(
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            versao_sis_id_gestor INTEGER NULL,
+            versao_sis_id_pdv INTEGER NULL,
+            last_change_at TIMESTAMP,
+            FOREIGN KEY (versao_sis_id_gestor) REFERENCES versoes_sis_gestor(id),
+            FOREIGN KEY (versao_sis_id_pdv) REFERENCES versoes_sis_gestor(id))""")
+            logger.info('Clientes table created')
 
     @staticmethod
     def set_topic(topic: str, topic_des: str = None) -> bool:
@@ -146,7 +169,8 @@ class Database:
                 logger.info(f'Search for solution with the "{search_term}" term(s)')
                 return cursor.fetchall()
             except Exception as e:
-                logger.error(f'Failed to search solution with "{search_term}" term(s) and {topic_id} topic ID. Erro: {e}')
+                logger.error(f'Failed to search solution with "{search_term}" term(s) and {topic_id} topic ID. '
+                             f'Erro: {e}')
                 return None
 
     @staticmethod
@@ -179,6 +203,62 @@ class Database:
     def delete_solution():
         pass
 
+    @staticmethod
+    def add_version_gestor(version: str):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('INSERT INTO version_sis_gestor(version)'
+                               'VALUES (%s)', (version,))
+                logger.info(f'Version "{version}" create in version_sis_gestor successfully')
+            except Exception as e:
+                logger.error(f'Failed to add version {version} in version_sis_gestor. Erro: {e}')
+
+    @staticmethod
+    def add_version_pdv(version: str):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('INSERT INTO version_sis_pdv(version)'
+                               'VALUES (%s)', (version,))
+                logger.info(f'Version "{version}" create in version_sis_pdv successfully')
+            except Exception as e:
+                logger.error(f'Failed to add version {version} in version_sis_pdv. Erro: {e}')
+
+    @staticmethod
+    def get_versions_gestor():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM version_sis_gestor')
+                logger.info(f'Successfully getting all the solution from version_sis_gestor')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get all the versions from version_sis_gestor. Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_versions_pdv():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM version_sis_pdv')
+                logger.info(f'Successfully getting all the versions from version_sis_pdv')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get all the versions from version_sis_pdv. Erro: {e}')
+                return None
+
+    @staticmethod
+    def add_cliente(name: str, version_gestor_id: int, version_pdv_id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                time_now = datetime.now()
+
+                cursor.execute('INSERT INTO clientes(name, versao_sis_destor_id, versao_sis_pdv_id, last_change_at)'
+                               'VALUES (%s, %s, %s, %s)', (name, version_gestor_id, version_pdv_id, time_now))
+                logger.info(f'Cliente {name} successfully created at cliente table')
+                return True
+            except Exception as e:
+                logger.error(f'Failed to create cliente {name}. Erro: {e}')
+                return False
+
 
 def has_the_comma(url_string):
     # Find the ',' in a url_string
@@ -191,6 +271,6 @@ def has_the_comma(url_string):
 def replace_the_comma(url_string):
     has_comma = has_the_comma(url_string)
     if has_comma:
-        return url_string.replace(',',';')
+        return url_string.replace(',', ';')
     else:
         return url_string

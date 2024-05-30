@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/suportmate</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="ddkcstqpqv4gel@ec2-44-194-102-142.compute-1.amazonaws.com" uuid="bfd03aa1-b2b0-4c5b-8503-f931f0c196a7">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-44-194-102-142.compute-1.amazonaws.com:5432/ddkcstqpqv4gel</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

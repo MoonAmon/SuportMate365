@@ -276,6 +276,7 @@ async def add_cliente(interaction: discord.Interaction, name: str):
     await bot.wait_for('interaction')
 
     version_pdv = view_pdv.value_pdv
+    print(f'{version_pdv} {version_gestor}')
 
     success = Database.add_cliente(name, version_gestor, version_pdv)
 

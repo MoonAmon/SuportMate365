@@ -203,6 +203,7 @@ class Database:
     def delete_solution():
         pass
 
+
     @staticmethod
     def add_version_gestor(version: str):
         with DatabaseConnection() as cursor:

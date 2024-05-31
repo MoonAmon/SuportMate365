@@ -85,7 +85,6 @@ class TopicButton(discord.ui.Button):
         self.view.topic_name = self.value[1]
 
 
-
 class TopicButtonView(discord.ui.View):
     def __init__(self, topics):
         super().__init__()

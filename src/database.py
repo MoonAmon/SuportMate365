@@ -208,7 +208,7 @@ class Database:
     def add_version_gestor(version: str):
         with DatabaseConnection() as cursor:
             try:
-                cursor.execute('INSERT INTO version_sis_gestor(version)'
+                cursor.execute('INSERT INTO versoes_sis_gestor(version)'
                                'VALUES (%s)', (version,))
                 logger.info(f'Version "{version}" create in version_sis_gestor successfully')
             except Exception as e:
@@ -218,7 +218,7 @@ class Database:
     def add_version_pdv(version: str):
         with DatabaseConnection() as cursor:
             try:
-                cursor.execute('INSERT INTO version_sis_pdv(version)'
+                cursor.execute('INSERT INTO versoes_sis_pdv(version)'
                                'VALUES (%s)', (version,))
                 logger.info(f'Version "{version}" create in version_sis_pdv successfully')
             except Exception as e:
@@ -228,7 +228,7 @@ class Database:
     def get_versions_gestor():
         with DatabaseConnection() as cursor:
             try:
-                cursor.execute('SELECT * FROM version_sis_gestor')
+                cursor.execute('SELECT * FROM versoes_sis_gestor')
                 logger.info(f'Successfully getting all the solution from version_sis_gestor')
                 return cursor.fetchall()
             except Exception as e:
@@ -239,7 +239,7 @@ class Database:
     def get_versions_pdv():
         with DatabaseConnection() as cursor:
             try:
-                cursor.execute('SELECT * FROM version_sis_pdv')
+                cursor.execute('SELECT * FROM versoes_sis_pdv')
                 logger.info(f'Successfully getting all the versions from version_sis_pdv')
                 return cursor.fetchall()
             except Exception as e:

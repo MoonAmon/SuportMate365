@@ -260,22 +260,22 @@ async def add_cliente(interaction: discord.Interaction, name: str):
     versions_gestor = Database.get_versions_gestor()
     versions_pdv = Database.get_versions_pdv()
 
-    view = VersionGestorSelectView(versions_gestor)
+    view_gestor = VersionGestorSelectView(versions_gestor)
     await interaction.response.send_message('## :page_with_curl: Selecione a versão do sistema gestor do cliente:'
-                                            , view=view, ephemeral=True)
+                                            , view=view_gestor, ephemeral=True)
 
     # Wait for user interaction
     await bot.wait_for('interaction')
 
-    version_gestor = view.value
+    version_gestor = view_gestor.value
 
-    view = VersionPdvSelectView(versions_pdv)
+    view_pdv = VersionPdvSelectView(versions_pdv)
     await interaction.followup.send('## :moneybag: Selecione a versão do sistema PDV do cliente:'
-                                    , view=view, ephemeral=True)
+                                    , view=view_pdv, ephemeral=True)
 
     await bot.wait_for('interaction')
 
-    version_pdv = view.value
+    version_pdv = view_pdv.value
 
     success = Database.add_cliente(name, version_gestor, version_pdv)
 

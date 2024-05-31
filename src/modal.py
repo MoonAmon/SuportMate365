@@ -29,7 +29,7 @@ class VersionGestorSelect(discord.ui.Select):
 
     async def callback(self, interaction: Interaction):
         self.view.value = self.values[0]
-        await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
+        await interaction.response.send_message(f'Versão: {self.values[1]}', ephemeral=True)
 
 
 class VersionPdvSelect(discord.ui.Select):
@@ -39,7 +39,7 @@ class VersionPdvSelect(discord.ui.Select):
 
     async def callback(self, interaction: Interaction):
         self.view.value = self.values[0]
-        await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
+        await interaction.response.send_message(f'Versão: {self.values[1]}', ephemeral=True)
 
 
 class VersionGestorSelectView(discord.ui.View):

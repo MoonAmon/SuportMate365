@@ -27,6 +27,8 @@ load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+
+
 intents = discord.Intents.default()
 intents.guilds = True
 intents.integrations = True
@@ -35,6 +37,14 @@ intents.message_content = True
 
 Database.initialise()
 bot = SupportClient(command_prefix='!', intents=intents)
+commands = bot.tree.get_commands(guild=interaction.guild)
+
+commands_string = ('## :sparkles: Comandos SupportMate365\n'
+                   'Todos os comandos disponíveis são:\n')
+for command in commands:
+    commands_string += f'- **{command.name}**: {command.description}\n'
+
+print(commands_string)
 
 
 def format_as_table(data):

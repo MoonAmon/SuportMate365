@@ -6,7 +6,6 @@ from log.log import logger
 from dotenv import load_dotenv
 from modal import *
 from database import *
-from commmands import *
 
 # Define the guild ID for the Discord server
 GUILD = discord.Object(897839630852952114)

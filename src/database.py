@@ -211,8 +211,10 @@ class Database:
                 cursor.execute('INSERT INTO versoes_sis_gestor(versao)'
                                'VALUES (%s)', (version,))
                 logger.info(f'Version "{version}" create in version_sis_gestor successfully')
+                return True
             except Exception as e:
                 logger.error(f'Failed to add version {version} in version_sis_gestor. Erro: {e}')
+                return False
 
     @staticmethod
     def add_version_pdv(version: str):
@@ -221,8 +223,10 @@ class Database:
                 cursor.execute('INSERT INTO versoes_sis_pdv(versao)'
                                'VALUES (%s)', (version,))
                 logger.info(f'Version "{version}" create in version_sis_pdv successfully')
+                return True
             except Exception as e:
                 logger.error(f'Failed to add version {version} in version_sis_pdv. Erro: {e}')
+                return False
 
     @staticmethod
     def get_versions_gestor():

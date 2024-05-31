@@ -293,7 +293,6 @@ async def add_version_gestor(interaction: discord.Interaction, version: str):
     if success:
         await interaction.response.send_message(f':white_check_mark: Versão {version} criado com sucesso!',
                                                 ephemeral=True)
-
     else:
         await interaction.response.send_message(f':prohibited: Erro: Versão {version} já existe!', ephemeral=True)
 

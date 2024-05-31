@@ -43,18 +43,16 @@ class VersionPdvSelect(discord.ui.Select):
 
 
 class VersionGestorSelectView(discord.ui.View):
-    def __init__(self, versions, cliente_nome):
+    def __init__(self, versions):
         super().__init__()
         self.value = None
-        self.cliente_nome = cliente_nome
         self.add_item(VersionGestorSelect(versions))
 
 
 class VersionPdvSelectView(discord.ui.View):
-    def __init__(self, versions, cliente_nome):
+    def __init__(self, versions):
         super().__init__()
         self.value = None
-        self.cliente_nome = cliente_nome
         self.add_item(VersionPdvSelect(versions))
 
 

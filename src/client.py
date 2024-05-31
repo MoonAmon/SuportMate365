@@ -50,7 +50,7 @@ def format_as_table(data):
 
     # Add each of data
     for row in data:
-        table += f'{row[0]:<20} | {row[1]} | {row[2]}\n'
+        table += f'{row[0]:<20} | {row[1]} {" " * 15}| {row[2]}\n'
 
     # Close the table
     table += "```"

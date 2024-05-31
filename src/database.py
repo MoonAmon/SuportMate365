@@ -1,11 +1,11 @@
 import psycopg2
 import os
-from psycopg2 import pool
-from utils.utils import Config
 from log.log import logger
 from datetime import datetime
 
 DATABASE_URL = os.environ['DATABASE_URL']
+
+# DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 class DatabaseConnection:

@@ -27,8 +27,6 @@ load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-
-
 intents = discord.Intents.default()
 intents.guilds = True
 intents.integrations = True
@@ -36,8 +34,7 @@ intents.messages = True
 intents.message_content = True
 
 Database.initialise()
-bot = SupportClient(command_prefix='!', intents=intents)
-commands = bot.tree.get_commands(guild=Interaction.guild)
+bot = SupportClient(command_prefix='/', intents=intents)
 
 commands_string = ('## :sparkles: Comandos SupportMate365\n'
                    'Todos os comandos disponíveis são:\n')

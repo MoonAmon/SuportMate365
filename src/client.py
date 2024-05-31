@@ -37,7 +37,7 @@ intents.message_content = True
 
 Database.initialise()
 bot = SupportClient(command_prefix='!', intents=intents)
-commands = bot.tree.get_commands(guild=interaction.guild)
+commands = bot.tree.get_commands(guild=Interaction.guild)
 
 commands_string = ('## :sparkles: Comandos SupportMate365\n'
                    'Todos os comandos disponíveis são:\n')

@@ -38,8 +38,6 @@ bot = SupportClient(command_prefix='/', intents=intents)
 
 commands_string = ('## :sparkles: Comandos SupportMate365\n'
                    'Todos os comandos disponíveis são:\n')
-for command in commands:
-    commands_string += f'- **{command.name}**: {command.description}\n'
 
 print(commands_string)
 
@@ -48,7 +46,7 @@ def format_as_table(data):
     # Create the table header
     table = "```\n"
     table += f'{"Cliente":<20} | {"Versão do Sistema Gestor"} | {"Versão do Sistema PDV"}\n'
-    table += f'{"-"*20} | {"-"*25} | {"-"*20}\n'
+    table += f'{"-" * 20} | {"-" * 25} | {"-" * 20}\n'
 
     # Add each of data
     for row in data:
@@ -57,6 +55,7 @@ def format_as_table(data):
     # Close the table
     table += "```"
     return table
+
 
 @bot.event
 async def on_ready():
@@ -67,6 +66,7 @@ async def on_ready():
     print('---------------')
 
     await bot.loop.create_task(bot.tree.sync())
+
 
 @bot.tree.command(name='add_topico', description='Criar um novo tópico')
 async def create_topic(interaction: discord.Interaction, topic_name: str):
@@ -290,7 +290,7 @@ async def add_cliente(interaction: discord.Interaction, name: str):
 
     if Database.add_cliente(name, version_gestor, version_pdv):
         await interaction.followup.send(f':white_check_mark: Cliente {name} criado com sucesso!',
-                                                ephemeral=True)
+                                        ephemeral=True)
     else:
         await interaction.followup.send(f':prohibited: Erro: Erro ao criar cliente {name}.', ephemeral=True)
 
@@ -324,6 +324,5 @@ async def show_client_version(interaction: Interaction):
     # Send the table as a message
     await interaction.response.send_message(table)
 
+
 bot.run(TOKEN)
-
-

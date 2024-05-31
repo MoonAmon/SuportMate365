@@ -256,7 +256,7 @@ class Database:
             try:
                 time_now = datetime.now()
 
-                cursor.execute('INSERT INTO clientes(name, versao_sis_destor_id, versao_sis_pdv_id, last_change_at)'
+                cursor.execute('INSERT INTO clientes(name, versao_sis_gestor_id, versao_sis_pdv_id, last_change_at)'
                                'VALUES (%s, %s, %s, %s)', (name, version_gestor_id, version_pdv_id, time_now))
                 logger.info(f'Cliente {name} successfully created at cliente table')
                 return True

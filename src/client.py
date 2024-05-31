@@ -280,10 +280,10 @@ async def add_cliente(interaction: discord.Interaction, name: str):
     success = Database.add_cliente(name, version_gestor, version_pdv)
 
     if success:
-        await interaction.response.send_message(f':white_check_mark: Cliente {name} criado com sucesso!',
+        await interaction.followup.send(f':white_check_mark: Cliente {name} criado com sucesso!',
                                                 ephemeral=True)
     else:
-        await interaction.response.send_message(f':prohibited: Erro: Erro ao criar cliente {name}.', ephemeral=True)
+        await interaction.followup.send(f':prohibited: Erro: Erro ao criar cliente {name}.', ephemeral=True)
 
 
 @bot.tree.command(name='add_versao_gestor', description='Adiciona uma versão do sistema gestor na base de dados.')

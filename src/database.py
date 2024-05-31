@@ -264,6 +264,24 @@ class Database:
                 logger.error(f'Failed to create cliente {name}. Erro: {e}')
                 return False
 
+    @staticmethod
+    def get_clientes():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""SELECT clientes.name AS Cliente, 
+                                        versoes_sis_gestor.versao AS Versao_Sistema_Gestor,
+                                        versoes_sis_pdv.versao AS Versao_Sistema_PDV
+                                FROM clientes
+                                INNER JOIN
+                                        versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis_gestor.id
+                                INNER JOIN
+                                        versoes_sis_pdv ON clientes.versao_sis_id_pdv = versoes_sis_pdv.id""")
+                logger.info(f'Succeffully get the clientes and versions')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed getting the clientes. Erro: {e}')
+                return None
+
 
 def has_the_comma(url_string):
     # Find the ',' in a url_string

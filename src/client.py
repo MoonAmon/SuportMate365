@@ -36,18 +36,6 @@ intents.message_content = True
 Database.initialise()
 bot = SupportClient(command_prefix='!', intents=intents)
 
-bot.tree.sync()
-
-
-@bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
-    print("Connected to the following guilds:")
-    for guild in bot.guilds:
-        print(f'- {guild.name} (ID: {guild.id})')
-    print('---------------')
-
-    await bot.loop.create_task(bot.tree.sync())
 
 def format_as_table(data):
     # Create the table header
@@ -63,6 +51,15 @@ def format_as_table(data):
     table += "```"
     return table
 
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    print("Connected to the following guilds:")
+    for guild in bot.guilds:
+        print(f'- {guild.name} (ID: {guild.id})')
+    print('---------------')
+
+    await bot.loop.create_task(bot.tree.sync())
 
 @bot.tree.command(name='add_topico', description='Criar um novo tópico')
 async def create_topic(interaction: discord.Interaction, topic_name: str):

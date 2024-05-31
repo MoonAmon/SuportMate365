@@ -267,7 +267,7 @@ async def add_cliente(interaction: discord.Interaction, name: str):
     # Wait for user interaction
     await bot.wait_for('interaction')
 
-    version_gestor = view_gestor.value
+    version_gestor = view_gestor.value_gestor
 
     view_pdv = VersionPdvSelectView(versions_pdv)
     await interaction.followup.send('## :moneybag: Selecione a versão do sistema PDV do cliente:'
@@ -275,7 +275,7 @@ async def add_cliente(interaction: discord.Interaction, name: str):
 
     await bot.wait_for('interaction')
 
-    version_pdv = view_pdv.value
+    version_pdv = view_pdv.value_pdv
 
     success = Database.add_cliente(name, version_gestor, version_pdv)
 

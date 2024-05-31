@@ -28,7 +28,7 @@ class VersionGestorSelect(discord.ui.Select):
         super().__init__(options=options)
 
     async def callback(self, interaction: Interaction):
-        self.view.value = self.values[0]
+        self.view.value_gestor = self.values[0]
         await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
 
 
@@ -38,21 +38,21 @@ class VersionPdvSelect(discord.ui.Select):
         super().__init__(options=options)
 
     async def callback(self, interaction: Interaction):
-        self.view.value = self.values[0]
+        self.view.value_pdv = self.values[0]
         await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
 
 
 class VersionGestorSelectView(discord.ui.View):
     def __init__(self, versions):
         super().__init__()
-        self.value = None
+        self.value_gestor = None
         self.add_item(VersionGestorSelect(versions))
 
 
 class VersionPdvSelectView(discord.ui.View):
     def __init__(self, versions):
         super().__init__()
-        self.value = None
+        self.value_pdv = None
         self.add_item(VersionPdvSelect(versions))
 
 

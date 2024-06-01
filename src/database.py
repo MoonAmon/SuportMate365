@@ -292,6 +292,7 @@ class Database:
                 return cursor.fetchall()
             except Exception as e:
                 logger.error(f'Failed getting all the clients from database. Erro: {e}')
+                return None
 
     @staticmethod
     def update_client_version(client_id: int, new_version_gestor_id: int, new_version_pdv_id: int):
@@ -301,10 +302,10 @@ class Database:
                 UPDATE clientes
                 SET versao_sis_id_gestor = %s, versao_sis_id_pdv = %s, last_change_at = %s
                 WHERE id = %s""", (new_version_gestor_id, new_version_pdv_id, datetime.now(), client_id))
-                logger.info(f'Successfully updated the system version for client {client_name}')
+                logger.info(f'Successfully updated the system version for client {client_id}')
                 return True
             except Exception as e:
-                logger.error(f'Failed to update the system version for client {client_name}. Error: {e}')
+                logger.error(f'Failed to update the system version for client {client_id}. Error: {e}')
                 return False
 
 

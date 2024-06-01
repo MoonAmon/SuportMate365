@@ -265,7 +265,7 @@ class Database:
                 return False
 
     @staticmethod
-    def get_clientes():
+    def get_clientes_and_version_sis():
         with DatabaseConnection() as cursor:
             try:
                 cursor.execute("""SELECT clientes.name AS Cliente, 
@@ -281,6 +281,31 @@ class Database:
             except Exception as e:
                 logger.error(f'Failed getting the clientes. Erro: {e}')
                 return None
+
+    @staticmethod
+    def get_clientes():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""
+                SELECT id, name FROM clientes""")
+                logger.info(f'Successfully getting all the clients from database')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed getting all the clients from database. Erro: {e}')
+
+    @staticmethod
+    def update_client_version(client_id: int, new_version_gestor_id: int, new_version_pdv_id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""
+                UPDATE clientes
+                SET versao_sis_id_gestor = %s, versao_sis_id_pdv = %s, last_change_at = %s
+                WHERE id = %s""", (new_version_gestor_id, new_version_pdv_id, datetime.now(), client_id))
+                logger.info(f'Successfully updated the system version for client {client_name}')
+                return True
+            except Exception as e:
+                logger.error(f'Failed to update the system version for client {client_name}. Error: {e}')
+                return False
 
 
 def has_the_comma(url_string):

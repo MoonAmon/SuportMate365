@@ -1,8 +1,9 @@
+import discord
 import traceback
 from discord import Interaction
 from typing import Any
+from discord._types import ClientT
 from log.log import logger
-import discord
 
 
 class SolutionSelect(discord.ui.Select):
@@ -29,7 +30,6 @@ class VersionGestorSelect(discord.ui.Select):
 
     async def callback(self, interaction: Interaction):
         self.view.value_gestor = self.values[0]
-        await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
 
 
 class VersionPdvSelect(discord.ui.Select):
@@ -39,7 +39,22 @@ class VersionPdvSelect(discord.ui.Select):
 
     async def callback(self, interaction: Interaction):
         self.view.value_pdv = self.values[0]
-        await interaction.response.send_message(f'Versão: {self.values[0]}', ephemeral=True)
+
+
+class ClienteSelect(discord.ui.Select):
+    def __init__(self, clientes):
+        options = [discord.SelectOption(label=cliente[1], value=cliente[0]) for cliente in clientes]
+        super().__init__(options=options)
+
+    async def callback(self, interaction: Interaction):
+        self.view.cliente_id = self.values[0]
+
+
+class ClienteSelectView(discord.ui.View):
+    def __init__(self, clientes):
+        super().__init__()
+        self.cliente_id = None
+        self.add_item(ClienteSelect(clientes))
 
 
 class VersionGestorSelectView(discord.ui.View):

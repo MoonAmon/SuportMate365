@@ -316,13 +316,48 @@ async def add_version_pdv(interaction: discord.Interaction, version: str):
 @bot.tree.command(name="mostrar_clientes_sistema", description='Mostra as versões dos sistemas dos clientes')
 async def show_client_version(interaction: Interaction):
     # Get the data from the database
-    data = Database.get_clientes()
+    data = Database.get_clientes_and_version_sis()
 
     # Format the data as a table
     table = format_as_table(data)
 
     # Send the table as a message
     await interaction.response.send_message(table)
+
+
+@bot.tree.command(name="att_cliente", description='Adiciona atualização de sistema para o cliente')
+async def att_cliente(interaction: Interaction):
+
+    # Getting the versions of system
+    versions_gestor = Database.get_versions_gestor()
+    versions_pdv = Database.get_versions_pdv()
+    clientes = Database.get_clientes()
+
+    view_clientes = ClienteSelectView(clientes)
+    await interaction.response.send_message('## :page_with_curl: Selecione o cliente:', view=view_clientes,
+                                            ephemeral=True)
+
+    await bot.wait_for('interaction')
+    client_selected = view_clientes.cliente_id
+
+    view_gestor = VersionGestorSelectView(versions_gestor)
+    await interaction.followup.send('## :page_with_curl: Selecione a versão do sistema gestor do cliente:'
+                                            , view=view_gestor, ephemeral=True)
+    await bot.wait_for('interaction')
+    version_gestor = view_gestor.value_gestor
+
+    view_pdv = VersionPdvSelectView(versions_pdv)
+    await interaction.followup.send('## :moneybag: Selecione a versão do sistema PDV do cliente:'
+                                    , view=view_pdv, ephemeral=True)
+
+    await bot.wait_for('interaction')
+    version_pdv = view_pdv.value_pdv
+
+    if Database.update_client_version(client_selected, version_gestor, version_pdv):
+        await interaction.response.send_message(f':white_check_mark: Cliente atualizado com sucesso!',
+                                                ephemeral=True)
+    else:
+        await interaction.response.send_message(f':prohibited: Erro ao atualizar cliente!', ephemeral=True)
 
 
 bot.run(TOKEN)

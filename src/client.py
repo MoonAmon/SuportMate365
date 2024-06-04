@@ -354,10 +354,10 @@ async def att_cliente(interaction: Interaction):
     version_pdv = view_pdv.value_pdv
 
     if Database.update_client_version(client_selected, version_gestor, version_pdv):
-        await interaction.response.send_message(f':white_check_mark: Cliente atualizado com sucesso!',
+        await interaction.followup.send(f':white_check_mark: Cliente atualizado com sucesso!',
                                                 ephemeral=True)
     else:
-        await interaction.response.send_message(f':prohibited: Erro ao atualizar cliente!', ephemeral=True)
+        await interaction.followup.send(f':prohibited: Erro ao atualizar cliente!', ephemeral=True)
 
 
 bot.run(TOKEN)

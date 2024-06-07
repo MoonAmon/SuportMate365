@@ -200,10 +200,11 @@ async def search_solution(interaction: discord.Interaction):
             for solution in solution_selected:
                 # Get the url links
                 url_links = solution[-1].split(';')
+                solution_description = solution[3]
 
                 await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
                                                 f'### Descrição\n '
-                                                f'{solution[3]}\n'
+                                                f'{solution_description}\n'
                                                 f'### Imagem(ns)\n'
                                                 f"{' '.join([f'![Image]({url})' for url in url_links])}\n"
                                                 f"----")

@@ -201,6 +201,7 @@ async def search_solution(interaction: discord.Interaction):
                 # Get the url links
                 url_links = solution[-1].split(';')
                 solution_description = solution[3]
+                solution_description = solution_description.replace('  ', '\n ')
 
                 await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
                                                 f'### Descrição\n '

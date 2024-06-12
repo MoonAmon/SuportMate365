@@ -313,11 +313,14 @@ class Database:
         with DatabaseConnection() as cursor:
             try:
                 cursor.execute("""
-                SELECT * FROM clientes AS Cliente,
-                    versoes_sis_gestor.versao AS versao_sistema_365
+                SELECT clientes.name AS Cliente,
+                    versoes_sis_gestor.versao AS versao_sistema_365,
+                    clientes.last_change_at
                 FROM clientes
                 INNER JOIN
-                    versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis+gestor.id""")
+                    versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis_gestor.id
+                WHERE last_change_at > NOW() - INTERVAL '12 HOURS'
+                """)
                 logger.info(f"Successfully get the cliente and versions")
                 return cursor.fetchall()
             except Exception as e:

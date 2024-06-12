@@ -198,7 +198,6 @@ async def search_solution(interaction: discord.Interaction):
         if solution_selected:
             # Show the solutions
             for solution in solution_selected:
-
                 # Get the url links
                 url_links = solution[-1].split(';')
                 solution_description = solution[3]
@@ -254,7 +253,6 @@ async def pending_tickets(
         aguardando_tratativa: str,
         escalonado_css: str,
         aguardando_cliente: str):
-
     aguardando_tratativa = ['#' + chamado for chamado in aguardando_tratativa.split(',')]
     escalonado_css = ['#' + chamado for chamado in escalonado_css.split(',')]
     aguardando_cliente = ['#' + chamado for chamado in aguardando_cliente.split(',')]
@@ -333,10 +331,8 @@ async def show_client_version(interaction: Interaction):
 
 @bot.tree.command(name="att_cliente", description='Adiciona atualização de sistema para o cliente')
 async def att_cliente(interaction: Interaction):
-
     # Getting the versions of system
     versions_gestor = Database.get_versions_gestor()
-    versions_pdv = Database.get_versions_pdv()
     clientes = Database.get_clientes()
 
     view_clientes = ClienteSelectView(clientes)
@@ -348,20 +344,15 @@ async def att_cliente(interaction: Interaction):
 
     view_gestor = VersionGestorSelectView(versions_gestor)
     await interaction.followup.send('## :page_with_curl: Selecione a versão do sistema gestor do cliente:'
-                                            , view=view_gestor, ephemeral=True)
+                                    , view=view_gestor, ephemeral=True)
     await bot.wait_for('interaction')
     version_gestor = view_gestor.value_gestor
 
-    view_pdv = VersionPdvSelectView(versions_pdv)
-    await interaction.followup.send('## :moneybag: Selecione a versão do sistema PDV do cliente:'
-                                    , view=view_pdv, ephemeral=True)
-
-    await bot.wait_for('interaction')
-    version_pdv = view_pdv.value_pdv
+    version_pdv = 4
 
     if Database.update_client_version(client_selected, version_gestor, version_pdv):
         await interaction.followup.send(f':white_check_mark: Cliente atualizado com sucesso!',
-                                                ephemeral=True)
+                                        ephemeral=True)
     else:
         await interaction.followup.send(f':prohibited: Erro ao atualizar cliente!', ephemeral=True)
 
@@ -376,8 +367,9 @@ async def latest_att_clients(interaction: Interaction):
 
     if lasted_att:
         for client in lasted_att:
-            final_message += (f':warning: ATENÇÃO :warning:\n\n:beginner: {client[0]}\n\n:white_check_mark: ATUALIZAÇÃO\n\n'
-                       f':blue_circle: SISTEMA 365 - Versão {client[1]}\n-----------------------------\n')
+            final_message += (
+                f":warning: ATENÇÃO :warning:\n\n:beginner: {client[0]}\n\n:white_check_mark: ATUALIZAÇÃO\n\n"
+                f":blue_circle: SISTEMA 365 - Versão {client[1]}\n-----------------------------\n")
 
         await channel.send(final_message)
         await interaction.response.send_message(f':white_check_mark: Mensagem de atualização enviada para o canal!',

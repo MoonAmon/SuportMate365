@@ -253,6 +253,7 @@ async def pending_tickets(
         aguardando_tratativa: str,
         escalonado_css: str,
         aguardando_cliente: str):
+
     aguardando_tratativa = ['#' + chamado for chamado in aguardando_tratativa.split(',')]
     escalonado_css = ['#' + chamado for chamado in escalonado_css.split(',')]
     aguardando_cliente = ['#' + chamado for chamado in aguardando_cliente.split(',')]
@@ -359,7 +360,7 @@ async def att_cliente(interaction: Interaction):
 
 @bot.tree.command(name="aviso_att", description="Manda para canal de atualizações as ultimas att feita no dia")
 async def latest_att_clients(interaction: Interaction):
-    channel_id = 1239668293334208673
+    channel_id = 1248434773916123298
     channel = bot.get_channel(channel_id)
 
     lasted_att = Database.get_lasts_att()

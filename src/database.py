@@ -308,6 +308,22 @@ class Database:
                 logger.error(f'Failed to update the system version for client {client_id}. Error: {e}')
                 return False
 
+    @staticmethod
+    def get_lasts_att():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""
+                SELECT * FROM clientes AS Cliente,
+                    versoes_sis_gestor.versao AS versao_sistema_365
+                FROM clientes
+                INNER JOIN
+                    versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis+gestor.id""")
+                logger.info(f"Successfully get the cliente and versions")
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed getting th clientes. Erro: {e}')
+                return None
+
 
 def has_the_comma(url_string):
     # Find the ',' in a url_string

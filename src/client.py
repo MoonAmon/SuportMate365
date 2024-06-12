@@ -204,6 +204,7 @@ async def search_solution(interaction: discord.Interaction):
                 solution_description = solution[3]
                 solution_description = solution_description.replace('  ', '  ')
                 solution_description = solution_description.replace(' -', '  -')
+                print(solution_description)
 
                 await interaction.followup.send(f'## **Titulo:** {solution[2]}\n'
                                                 f'### Descrição\n '
@@ -253,6 +254,7 @@ async def pending_tickets(
         aguardando_tratativa: str,
         escalonado_css: str,
         aguardando_cliente: str):
+
     aguardando_tratativa = ['#' + chamado for chamado in aguardando_tratativa.split(',')]
     escalonado_css = ['#' + chamado for chamado in escalonado_css.split(',')]
     aguardando_cliente = ['#' + chamado for chamado in aguardando_cliente.split(',')]
@@ -362,6 +364,27 @@ async def att_cliente(interaction: Interaction):
                                                 ephemeral=True)
     else:
         await interaction.followup.send(f':prohibited: Erro ao atualizar cliente!', ephemeral=True)
+
+
+@bot.tree.command(name="aviso_att", description="Manda para canal de atualizações as ultimas att feita no dia")
+async def latest_att_clients(interaction: Interaction):
+    channel_id = 1239668293334208673
+    channel = bot.get_channel(channel_id)
+
+    lasted_att = Database.get_lasts_att()
+    final_message = ""
+
+    if lasted_att:
+        for client in lasted_att:
+            final_message += (f':warning: ATENÇÃO :warning:\n\n:beginner: {client[0]}\n\n:white_check_mark: ATUALIZAÇÃO\n\n'
+                       f':blue_circle: SISTEMA 365 - Versão {client[1]}\n-----------------------------\n')
+
+        await channel.send(final_message)
+        await interaction.response.send_message(f':white_check_mark: Mensagem de atualização enviada para o canal!',
+                                                ephemeral=True)
+    else:
+        await interaction.response.send_message(f':prohibited: Nenhuma atualização encontrada nas ultimas horas!',
+                                                ephemeral=True)
 
 
 bot.run(TOKEN)

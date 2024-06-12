@@ -379,5 +379,20 @@ async def latest_att_clients(interaction: Interaction):
         await interaction.response.send_message(f':prohibited: Nenhuma atualização encontrada nas ultimas horas!',
                                                 ephemeral=True)
 
+@bot.tree.command(name="listar_clientes", description="Manda uma mensagem com a lista dos servidores de clientes cadastrados na base de dados")
+async def get_client(interaction: Interaction):
+
+    clients = Database.get_clientes()
+    clients_str = f"## :beginner: Servidores cadastrados:\n"
+
+    if clients:
+        for client in clients:
+            clients_str += f"- **{client[1]}**\n"
+
+    else:
+        clients_str = ":prohibited: Nenhum servidor foi encontrado!"
+
+    await interaction.response.send_message(clients_str, ephemeral=True)
+
 
 bot.run(TOKEN)

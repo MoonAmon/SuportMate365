@@ -323,11 +323,27 @@ async def show_client_version(interaction: Interaction):
     # Get the data from the database
     data = Database.get_clientes_and_version_sis()
 
-    # Format the data as a table
-    table = format_as_table(data)
+    if data:
+        clients_str = "```\n"
+        clients_str += f'{"Cliente":<20} | {"Versão Sistema 365 Gestor"}\n'
+        clients_str += f'{"-" * 20} | {"-" * 7}\n'
 
-    # Send the table as a message
-    await interaction.response.send_message(table)
+        await interaction.response.send_message('## Versões Sistema 365 Clientes\n')
+
+        for client in data:
+            new_line = f'{client[0]:<20} | {client[1]}\n'
+            if len(clients_str) + len(new_line) > 1990:
+                client += "```"
+                await interaction.followup.send(clients_str)
+                clients_str = "```\n"
+            clients_str += new_line
+
+        clients_str += "```"
+        await interaction.followup.send(clients_str)
+    else:
+        await interaction.followup.send(":prohibited: Um erro ocorreu!", ephmeral=True)
+
+
 
 
 @bot.tree.command(name="att_cliente", description='Adiciona atualização de sistema para o cliente')

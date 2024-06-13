@@ -45,7 +45,7 @@ print(commands_string)
 def format_as_table(data):
     # Create the table header
     table = "```\n"
-    table += f'{"Cliente":<20} | {"Versão do Sistema Gestor"} | {"Versão do Sistema PDV"}\n'
+    table += f'{"Cliente":<46} | {"Versão do Sistema Gestor"} | {"Versão do Sistema PDV"}\n'
     table += f'{"-" * 20} | {"-" * 25} | {"-" * 20}\n'
 
     # Add each of data
@@ -344,8 +344,6 @@ async def show_client_version(interaction: Interaction):
         await interaction.followup.send(":prohibited: Um erro ocorreu!", ephmeral=True)
 
 
-
-
 @bot.tree.command(name="att_cliente", description='Adiciona atualização de sistema para o cliente')
 async def att_cliente(interaction: Interaction):
     # Getting the versions of system
@@ -394,6 +392,7 @@ async def latest_att_clients(interaction: Interaction):
     else:
         await interaction.response.send_message(f':prohibited: Nenhuma atualização encontrada nas ultimas horas!',
                                                 ephemeral=True)
+
 
 @bot.tree.command(name="listar_clientes", description="Manda uma mensagem com a lista dos servidores de clientes cadastrados na base de dados")
 async def get_client(interaction: Interaction):

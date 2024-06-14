@@ -275,8 +275,9 @@ class Database:
                                 INNER JOIN
                                         versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis_gestor.id
                                 INNER JOIN
-                                        versoes_sis_pdv ON clientes.versao_sis_id_pdv = versoes_sis_pdv.id""")
-                logger.info(f'Succeffully get the clientes and versions')
+                                        versoes_sis_pdv ON clientes.versao_sis_id_pdv = versoes_sis_pdv.id
+                                ORDER BY Cliente""")
+                logger.info(f'Successfully get the clientes and versions')
                 return cursor.fetchall()
             except Exception as e:
                 logger.error(f'Failed getting the clientes. Erro: {e}')

@@ -1,8 +1,11 @@
 import psycopg2
-from psycopg2 import pool
-from utils.utils import Config
+import os
 from log.log import logger
 from datetime import datetime
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+# DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 class DatabaseConnection:
@@ -24,7 +27,6 @@ class DatabaseConnection:
             self.cursor.close()
             self.conn.commit()
             logger.info('Transaction committed')
-        Database.return_connection(self.conn)
 
 
 class Database:
@@ -32,20 +34,14 @@ class Database:
 
     @staticmethod
     def initialise():
-        config_data = Config.get_config()
-        Database.__connection_pool = pool.SimpleConnectionPool(20,
-                                                               10,
-                                                               user=config_data['DB_USER'],
-                                                               password=config_data['DB_PASSWORD'],
-                                                               database=config_data['DB_NAME'],
-                                                               host=config_data['DB_HOST'])
+        Database.__connection_pool = psycopg2.connect(DATABASE_URL)
         Database.create_tables()
-        logger.info(f'Database connection pool initialized (Database: {config_data['DB_NAME']})')
+        logger.info(f'Database connection pool initialized')
 
     @staticmethod
     def get_connection():
-        logger.info('Getting a connection from the pool')
-        return Database.__connection_pool.getconn()
+        logger.info('Getting the database connection')
+        return Database.__connection_pool
 
     @staticmethod
     def return_connection(connection):
@@ -53,9 +49,9 @@ class Database:
         Database.__connection_pool.putconn(connection)
                 
     @staticmethod
-    def close_all_connections():
+    def close_connections():
         logger.info('All connections in the pool have been closed')
-        Database.__connection_pool.closeall()
+        Database.__connection_pool.close()
 
     @staticmethod
     def create_tables():
@@ -77,9 +73,32 @@ class Database:
             solucao_desc TEXT NULL,
             created_at TIMESTAMP NOT NULL,
             modified_at TIMESTAMP NULL,
-            image_url TEXT,
+            image_url TEXT NULL,
             FOREIGN KEY(topico_id) REFERENCES topicos(id))""")
             logger.info('Solutions table created')
+
+            # Create versoes_sis_gestor table
+            cursor.execute("""CREATE TABLE IF NOT EXISTS versoes_sis_gestor(
+            id SERIAL PRIMARY KEY,
+            versao TEXT NOT NULL UNIQUE )""")
+            logger.info('Versoes_sis table created')
+
+            # Create versoes_sis_pdv table
+            cursor.execute("""CREATE TABLE IF NOT EXISTS versoes_sis_pdv(
+            id SERIAL PRIMARY KEY,
+            versao TEXT NOT NULL UNIQUE )""")
+            logger.info('Versoes_sis_pdv table created')
+
+            # Create clientes table
+            cursor.execute("""CREATE TABLE IF NOT EXISTS clientes(
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            versao_sis_id_gestor INTEGER NULL,
+            versao_sis_id_pdv INTEGER NULL,
+            last_change_at TIMESTAMP,
+            FOREIGN KEY (versao_sis_id_gestor) REFERENCES versoes_sis_gestor(id),
+            FOREIGN KEY (versao_sis_id_pdv) REFERENCES versoes_sis_pdv(id))""")
+            logger.info('Clientes table created')
 
     @staticmethod
     def set_topic(topic: str, topic_des: str = None) -> bool:
@@ -142,7 +161,7 @@ class Database:
                 return None
 
     @staticmethod
-    def search_solution(topic_id: int, search_term: str):
+    def search_solution_by_title(topic_id: int, search_term: str):
         with DatabaseConnection() as cursor:
             try:
                 cursor.execute('SELECT * FROM solucoes WHERE topico_id = %s AND titulo LIKE %s LIMIT 3',
@@ -150,12 +169,164 @@ class Database:
                 logger.info(f'Search for solution with the "{search_term}" term(s)')
                 return cursor.fetchall()
             except Exception as e:
-                logger.error(f'Failed to search solution with "{search_term}" term(s) and {topic_id} topic ID. Erro: {e}')
+                logger.error(f'Failed to search solution with "{search_term}" term(s) and {topic_id} topic ID. '
+                             f'Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_all_solutions_by_topic_id(topic_id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM solucoes WHERE topico_id = %s', (topic_id,))
+                logger.info(f'Getting all the solution with "{topic_id}" topic ID')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get the solutions with {topic_id} topic ID. Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_solution_by_id(id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM solucoes WHERE id = %s', (id,))
+                logger.info(f'Getting all the solution with "{id}" topic ID')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get the solutions with {id} topic ID. Erro: {e}')
                 return None
 
     @staticmethod
     def edit_solution():
         pass
+
+    @staticmethod
+    def delete_solution():
+        pass
+
+
+    @staticmethod
+    def add_version_gestor(version: str):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('INSERT INTO versoes_sis_gestor(versao)'
+                               'VALUES (%s)', (version,))
+                logger.info(f'Version "{version}" create in version_sis_gestor successfully')
+                return True
+            except Exception as e:
+                logger.error(f'Failed to add version {version} in version_sis_gestor. Erro: {e}')
+                return False
+
+    @staticmethod
+    def add_version_pdv(version: str):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('INSERT INTO versoes_sis_pdv(versao)'
+                               'VALUES (%s)', (version,))
+                logger.info(f'Version "{version}" create in version_sis_pdv successfully')
+                return True
+            except Exception as e:
+                logger.error(f'Failed to add version {version} in version_sis_pdv. Erro: {e}')
+                return False
+
+    @staticmethod
+    def get_versions_gestor():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM versoes_sis_gestor')
+                logger.info(f'Successfully getting all the solution from version_sis_gestor')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get all the versions from version_sis_gestor. Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_versions_pdv():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute('SELECT * FROM versoes_sis_pdv')
+                logger.info(f'Successfully getting all the versions from version_sis_pdv')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed to get all the versions from version_sis_pdv. Erro: {e}')
+                return None
+
+    @staticmethod
+    def add_cliente(name: str, version_gestor_id: int, version_pdv_id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                time_now = datetime.now()
+
+                cursor.execute('INSERT INTO clientes(name, versao_sis_id_gestor, versao_sis_id_pdv, last_change_at)'
+                               'VALUES (%s, %s, %s, %s)', (name, version_gestor_id, version_pdv_id, time_now))
+                logger.info(f'Cliente {name} successfully created at cliente table')
+                return True
+            except Exception as e:
+                logger.error(f'Failed to create cliente {name}. Erro: {e}')
+                return False
+
+    @staticmethod
+    def get_clientes_and_version_sis():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""SELECT clientes.name AS Cliente, 
+                                        versoes_sis_gestor.versao AS Versao_Sistema_Gestor,
+                                        versoes_sis_pdv.versao AS Versao_Sistema_PDV
+                                FROM clientes
+                                INNER JOIN
+                                        versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis_gestor.id
+                                INNER JOIN
+                                        versoes_sis_pdv ON clientes.versao_sis_id_pdv = versoes_sis_pdv.id
+                                ORDER BY Cliente""")
+                logger.info(f'Successfully get the clientes and versions')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed getting the clientes. Erro: {e}')
+                return None
+
+    @staticmethod
+    def get_clientes():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""
+                SELECT id, name FROM clientes""")
+                logger.info(f'Successfully getting all the clients from database')
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed getting all the clients from database. Erro: {e}')
+                return None
+
+    @staticmethod
+    def update_client_version(client_id: int, new_version_gestor_id: int, new_version_pdv_id: int):
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""
+                UPDATE clientes
+                SET versao_sis_id_gestor = %s, versao_sis_id_pdv = %s, last_change_at = %s
+                WHERE id = %s""", (new_version_gestor_id, new_version_pdv_id, datetime.now(), client_id))
+                logger.info(f'Successfully updated the system version for client {client_id}')
+                return True
+            except Exception as e:
+                logger.error(f'Failed to update the system version for client {client_id}. Error: {e}')
+                return False
+
+    @staticmethod
+    def get_lasts_att():
+        with DatabaseConnection() as cursor:
+            try:
+                cursor.execute("""
+                SELECT clientes.name AS Cliente,
+                    versoes_sis_gestor.versao AS versao_sistema_365,
+                    clientes.last_change_at
+                FROM clientes
+                INNER JOIN
+                    versoes_sis_gestor ON clientes.versao_sis_id_gestor = versoes_sis_gestor.id
+                WHERE last_change_at > NOW() - INTERVAL '12 HOURS'
+                """)
+                logger.info(f"Successfully get the cliente and versions")
+                return cursor.fetchall()
+            except Exception as e:
+                logger.error(f'Failed getting th clientes. Erro: {e}')
+                return None
 
 
 def has_the_comma(url_string):
@@ -169,6 +340,6 @@ def has_the_comma(url_string):
 def replace_the_comma(url_string):
     has_comma = has_the_comma(url_string)
     if has_comma:
-        return url_string.replace(',',';')
+        return url_string.replace(',', ';')
     else:
         return url_string

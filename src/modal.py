@@ -1,26 +1,74 @@
+import discord
 import traceback
 from discord import Interaction
 from typing import Any
+from discord._types import ClientT
 from log.log import logger
-import discord
 
 
-class VersionSelect(discord.ui.Select):
+class SolutionSelect(discord.ui.Select):
+    def __init__(self, solutions):
+        options = [discord.SelectOption(label=solution[2], value=solution[0]) for solution in solutions]
+        super().__init__(options=options)
+
+    def callback(self, interaction: discord.Interaction):
+        print(self.values)
+        self.view.value = self.values[0]
+
+
+class SolutionViewSelect(discord.ui.View):
+    def __init__(self, solutions):
+        super().__init__()
+        self.value = None
+        self.add_item(SolutionSelect(solutions))
+
+
+class VersionGestorSelect(discord.ui.Select):
     def __init__(self, versions):
-        options = [discord.SelectOption(label=version, value=version) for version in versions]
+        options = [discord.SelectOption(label=version[1], value=version[0]) for version in versions]
         super().__init__(options=options)
 
     async def callback(self, interaction: Interaction):
-        self.view.value = self.values[0]
-        await interaction.response.send_message(f'Aviso criado para versão: {self.values[0]}', ephemeral=True)
+        self.view.value_gestor = self.values[0]
 
 
-class VersionSelectView(discord.ui.View):
-    def __init__(self, versions, cliente_nome):
+class VersionPdvSelect(discord.ui.Select):
+    def __init__(self, versions):
+        options = [discord.SelectOption(label=version[1], value=version[0]) for version in versions]
+        super().__init__(options=options)
+
+    async def callback(self, interaction: Interaction):
+        self.view.value_pdv = self.values[0]
+
+
+class ClienteSelect(discord.ui.Select):
+    def __init__(self, clientes):
+        options = [discord.SelectOption(label=cliente[1], value=cliente[0]) for cliente in clientes]
+        super().__init__(options=options)
+
+    async def callback(self, interaction: Interaction):
+        self.view.cliente_id = self.values[0]
+
+
+class ClienteSelectView(discord.ui.View):
+    def __init__(self, clientes):
         super().__init__()
-        self.value = None
-        self.cliente_nome = cliente_nome
-        self.add_item(VersionSelect(versions))
+        self.cliente_id = None
+        self.add_item(ClienteSelect(clientes))
+
+
+class VersionGestorSelectView(discord.ui.View):
+    def __init__(self, versions):
+        super().__init__()
+        self.value_gestor = None
+        self.add_item(VersionGestorSelect(versions))
+
+
+class VersionPdvSelectView(discord.ui.View):
+    def __init__(self, versions):
+        super().__init__()
+        self.value_pdv = None
+        self.add_item(VersionPdvSelect(versions))
 
 
 class TopicSelect(discord.ui.Select):
